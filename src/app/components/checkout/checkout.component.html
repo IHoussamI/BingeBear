@@ -1,0 +1,211 @@
+<header >
+    <nav class="navbar">
+        <div class="bingebear-logo">
+                <img src="BingeBear.TV (3).png" alt="bingebear-logo" routerLink="home">
+        </div>
+        <a class="signup-text" href="login"> 
+          👋 Steal This Deal: 40% OFF + FREE Extra Months – Ends Soon!        </a>
+      <button class="GetAPP"> UNLOCK FREE TRIAL</button>
+
+    </nav>
+</header> 
+<div class="checkout-container">
+    <div class="checkout-form-container">
+      <div class="success-message">
+        <span class="checkmark">✓</span>
+        <span class="message">"Best IPTV Deal: 14 Months for Just 99€! [LIMITED TIME]" has been added to your cart.</span>
+        <button class="checkout-btn">Checkout</button>
+      </div>
+  
+      <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+        <div class="form-section">
+          <h2>Customer information</h2>
+          <div class="form-field full-width">
+            <input type="email" formControlName="email" placeholder="Email Address *" required>
+            <div class="error-message" *ngIf="checkoutForm.get('email')?.invalid && checkoutForm.get('email')?.touched">
+              Valid email is required
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-section">
+          <h2>Billing details</h2>
+          <div class="form-row">
+            <div class="form-field">
+              <input type="text" formControlName="firstName" placeholder="First name (optional)">
+            </div>
+            <div class="form-field">
+              <input type="text" formControlName="lastName" placeholder="Last name" required>
+              <div class="error-message" *ngIf="checkoutForm.get('lastName')?.invalid && checkoutForm.get('lastName')?.touched">
+                Last name is required
+              </div>
+            </div>
+          </div>
+  
+          <div class="form-field full-width">
+            <select formControlName="country">
+              <option value="Ireland">Ireland</option>
+              <option value="UK">United Kingdom</option>
+              <option value="USA">United States</option>
+              <option value="Canada">Canada</option>
+            </select>
+          </div>
+  
+          <div class="form-field full-width">
+            <input type="text" formControlName="city" placeholder="Town / City">
+          </div>
+  
+          <div class="form-field full-width">
+            <input type="tel" formControlName="phone" placeholder="Whatsapp Phone Number *" required>
+            <div class="error-message" *ngIf="checkoutForm.get('phone')?.invalid && checkoutForm.get('phone')?.touched">
+              Phone number is required
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-section">
+          <h2>Your order</h2>
+          <div class="order-summary">
+            <!-- This is a placeholder for the order summary that appears as gray bars in the image -->
+            <div class="order-item">
+              <div class="order-image"></div>
+              <div class="order-details">
+                <div class="order-title"></div>
+                <div class="order-info"></div>
+                <div class="order-price"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-section">
+          <h2>Payment</h2>
+          <div class="payment-methods">
+            <h3>Choose Payment Method</h3>
+            
+            <div class="payment-option">
+              <label class="payment-label">
+                <input type="radio" name="paymentMethod" value="creditCard" formControlName="paymentMethod">
+                <div class="payment-content">
+                  <div class="payment-header">
+                    <span class="radio-indicator"></span>
+                    <div class="payment-title">Credit Card</div>
+                  </div>
+                  <div class="payment-details">
+                    <div class="payment-line"></div>
+                    <div class="payment-line short"></div>
+                  </div>
+                </div>
+              </label>
+            </div>
+            
+            <div class="payment-option">
+              <label class="payment-label">
+                <input type="radio" name="paymentMethod" value="paypal" formControlName="paymentMethod">
+                <div class="payment-content">
+                  <div class="payment-header">
+                    <span class="radio-indicator"></span>
+                    <div class="payment-title">PayPal</div>
+                  </div>
+                  <div class="payment-details">
+                    <div class="payment-line"></div>
+                    <div class="payment-line short"></div>
+                  </div>
+                </div>
+              </label>
+            </div>
+            
+            <div class="payment-option">
+              <label class="payment-label">
+                <input type="radio" name="paymentMethod" value="crypto" formControlName="paymentMethod">
+                <div class="payment-content">
+                  <div class="payment-header">
+                    <span class="radio-indicator"></span>
+                    <div class="payment-title">Cryptocurrency</div>
+                  </div>
+                  <div class="payment-details">
+                    <div class="payment-line"></div>
+                    <div class="payment-line short"></div>
+                  </div>
+                </div>
+              </label>
+            </div>
+            
+            <div class="payment-option bank-transfer">
+              <div class="payment-line full"></div>
+            </div>
+          </div>
+        </div>
+  
+        <button type="submit" class="submit-btn">Complete Order</button>
+      </form>
+    </div>
+  
+    <div class="info-sidebar">
+      <div class="feature-section">
+        <h2>AI-Powered IPTV for Seamless Streaming</h2>
+        <p>Experience a new era of entertainment with our optimized IPTV service. No more buffering, no more interruptions—just seamless streaming powered by AI.</p>
+        
+        <ul class="features-list">
+          <li *ngFor="let feature of features">
+            <span class="feature-check">✓</span>
+            <span>{{ feature }}</span>
+          </li>
+        </ul>
+      </div>
+  
+      <div class="testimonials-section">
+        <h2>Testimonials</h2>
+        <div class="testimonial-card" *ngFor="let testimonial of testimonials">
+          <p>{{ testimonial.text }}</p>
+          <div class="testimonial-author">
+            <strong>{{ testimonial.name }}</strong>
+            <span>{{ testimonial.location }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="purchase-confidence">
+        <h2>Purchase with confidence</h2>
+        
+        <div class="guarantee-box">
+          <div class="guarantee-header">
+            <strong>100% money back guarantee!</strong>
+            <div>120-Day Money-Back Guarantee</div>
+          </div>
+          
+          <p>Enjoy a 120-Day Money-Back Guarantee. If you're not satisfied with our service, we'll provide a full refund—no questions asked.</p>
+        </div>
+        
+        <div class="security-features">
+          <div class="security-item">
+            <span class="security-icon">🔒</span>
+            <span>SSL secured checkout</span>
+          </div>
+          
+          <div class="security-item">
+            <span class="security-icon">⏰</span>
+            <span>24/7 support available</span>
+          </div>
+          
+          <div class="security-item">
+            <span class="security-icon">💳</span>
+            <span>Payment options</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="footer">
+    <div class="footer-buttons">
+      <a href="#" class="footer-link">Refund Policy</a>
+      <a href="#" class="footer-link">Terms of Service</a>
+      <a href="#" class="footer-link">Privacy Policy</a>
+      <a href="#" class="footer-link">Contact Us</a>
+    </div>
+    
+    <section class="rights">
+      <p class="rights-texts">© 2024 BingeBear. All rights reserved.</p>
+    </section>
+  </footer>

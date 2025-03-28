@@ -1,0 +1,53 @@
+<section class="pricing-container">
+  <div class="pricing-title">
+    <h1>Manage<br>
+      <span> Subscription</span>
+    </h1>
+    <p>Pick the plan that fits your streaming needs.</p>
+  </div>
+
+  <div class="button-toggle">
+    <button 
+      [class.active]="selectedPlanType === 'individual'" 
+      (click)="selectPlanType('individual')">
+      Individual
+    </button>
+    <button 
+      [class.active]="selectedPlanType === 'family'" 
+      (click)="selectPlanType('family')">
+      Family - Save 40%
+    </button>
+  </div>
+
+  <div class="plans-container">
+    <div *ngFor="let plan of plans" class="plan-card" [class.popular]="plan.isPopular">
+      <div class="discount">{{ plan.discountText }}</div>
+      <div class="plan-header">
+        <h3>{{ plan.title }}</h3>
+        <div class="price-section">
+          <div class="current-price">
+            <span class="amount">{{ plan.price }}</span>
+            <span class="duration">{{ plan.duration }}</span>
+          </div>
+          <div class="description">{{ plan.description }}</div>
+        </div>
+      </div>
+
+      <div class="plan-features">
+        <ul>
+          <li *ngFor="let feature of plan.features">{{ feature }}</li>
+        </ul>
+      </div>
+      <div class="full-width-divider"></div>
+
+      <button class="cta-button">
+        <span class="cta-text" routerLink="/checkout">{{ plan.ctaText }}</span>
+
+        </button>
+    </div>
+  </div>
+
+  <div class="pricing-footer">
+    {{ footerText }}
+  </div>
+</section>

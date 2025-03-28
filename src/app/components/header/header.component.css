@@ -1,0 +1,43 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: transparent; 
+    color: white; 
+    font-family: Arial, sans-serif;
+}
+
+.bingebear-logo img {
+    height: 40px;
+    cursor:pointer;
+
+}
+
+.signup-text {
+    text-decoration: none;
+    flex-grow: 1;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color:white;
+
+}
+
+.GetAPP {
+    background-color: #585252; 
+    color: white;
+    border: none;
+    font-weight:bold;
+    font-family:monospace;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background 0.3s ease-in-out;
+}
+
+.GetAPP:hover {
+    background-color: #ffffff;
+    color:black;
+}

@@ -1,0 +1,208 @@
+
+
+
+
+.pricing-container {
+  font-family: "Chivo", Sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color :#171717;
+}
+.pricing-title{
+  text-align: center;
+}
+.pricing-title h1{
+  color:white;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  margin-bottom:0;
+}
+.pricing-title span{
+  font-size:2.5rem;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  top: -0.3em;
+}
+.pricing-title p{
+  color:#474747;
+  font-size:0.7rem;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.pricing-header h2 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.pricing-header h3 {
+  font-size: 18px;
+  color: #666;
+  margin-top: 0;
+}
+
+.plans-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.plan-features {
+  flex-grow: 1; /* Makes features take available space */
+}
+
+
+.discount {
+  position:absolute;
+  top: 10px;  
+  right: 15px;
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  font-style:italic;
+  padding: 4px 8px;
+  background-color: #5E55FF;
+  border-radius: 25px;
+  margin-left: 10px;
+  margin-bottom:10px;
+  white-space: nowrap;
+  align-items: right;
+}
+.plan-features li::before {
+  content: "✓";
+  color:#5E55FF;
+  margin-right: 8px;
+}
+
+.plan-features li {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.plan-card {
+  display:flex;
+  flex-direction: column;
+  border: 0.5px solid #6666665d;
+  padding: 25px;
+  width: 400px;
+  min-height: 500px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Slightly stronger shadow */
+}
+
+
+
+.plan-header h3 {
+  font-size: 20px;
+  margin-top: 40px;
+  color: white;
+}
+
+.price-section {
+  margin: 15px 0;
+}
+
+
+.current-price .amount {
+  font-size: 28px;
+  font-weight: bold;
+  color:white;
+}
+
+.current-price .duration {
+  font-size: 12px;
+  font-style:italic;
+  color: #666;
+  margin-left: 5px;
+  font-weight: bold;
+
+}
+
+.description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+  font-weight: bold;
+
+}
+
+.plan-features ul {
+  list-style-type: none;
+  padding-left: 20px;
+}
+
+.plan-features li {
+  padding-left: 20px;
+  list-style-position: inside; 
+  text-indent: -1.5em;
+  padding: 5px 0;
+  font-size: 11px;
+  color:white;
+}
+
+.cta-button {
+  width: 100%;
+  padding: 0;
+  background: transparent;
+  border-radius :25px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: none;
+  margin-top:auto;
+}
+
+
+.cta-button span:hover {
+  background-color: #5E55FF;
+}
+
+.pricing-footer {
+  text-align: center;
+  margin-top: 30px;
+  color: #666;
+  font-size: 14px;
+}  
+.button-toggle {
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.button-toggle button {
+  padding: 12px 25px;
+  background-color: #252525; 
+  border: 1px solid #333; 
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+.button-toggle .active {
+  color: white;
+}
+
+.button-toggle button:hover {
+  color: #ddd;
+}
+
+.button-toggle .active {
+  border-bottom: 3px solid purple;
+}
+
+.full-width-divider {
+  height: 1px;
+  background-color: #6666665d;
+  margin: 20px -25px; /* Negative margin to extend beyond padding */
+}

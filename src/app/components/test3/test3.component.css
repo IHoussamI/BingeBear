@@ -1,0 +1,114 @@
+.channels-container {
+    background: #171717;
+    padding: 40px;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.image-section {
+    flex: 0.6;
+    max-width: 300px;
+}
+
+.image-section img {
+    width: 100%;
+    height: auto;
+}
+
+.scrolling-section {
+    flex: 0.4;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.scrolling-words {
+    height: 60px; 
+    width: 150px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.word {
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding: 8px 0;
+    text-align: center;
+}
+
+.highlight-zone {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 30px;
+    background: linear-gradient(
+        to bottom,
+        rgba(23, 23, 23, 1),
+        rgba(255, 215, 0, 0.2) 40%,
+        rgba(255, 215, 0, 0.2) 55%,
+        rgba(23, 23, 23, 1)
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+.scrolling-words > div {
+    animation: scrollWords 6s linear infinite;
+    display: flex;
+    flex-direction: column;
+}
+
+.word.active {
+    color: #FFD700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+}
+
+@keyframes scrollWords {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-60%);
+    }
+}
+
+.content {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.content p {
+    color: #7A7A7A;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.manage-subscription {
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.manage-subscription:hover {
+    background: white;
+    color: black;
+}
+
+.offer {
+    display: block;
+    color: #7A7A7A;
+    margin-top: 10px;
+    font-size: 0.8rem;
+}

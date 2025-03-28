@@ -1,0 +1,930 @@
+<section class="body">
+  <header>
+    <nav class="navbar">
+      <div class="bingebear-logo">
+        <img src="/BingeBear.TV (3).png" alt="bingebear-logo" routerLink="home">
+      </div>
+      <a class="signup-text" href="login">
+        👋 Fill Out the Trial Form & Get Instant Access – No Effort, Just TV!
+      </a>
+      <button class="GetAPP"> GET THE APP </button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="text-container">
+      <p class="update-text"> <span>UPDATE</span> Introducing AI-Powered IPTV Servers</p>
+      <h1>Instant Access to <br> AI-Powered IPTV 📡</h1>
+      <p>Stream Fast. Watch Quality. Anytime. Anywhere.</p>
+
+      <div class="button-container">
+        <button (click)="scrollToSection('section2')">
+          <img class="button-icons" src="/lock-open.png">
+          TRY FOR FREE - 24H ACCESS
+        </button>
+        <button (click)="scrollToSection('section1')">
+          <img class="button-icons" src="/start-video.png">
+          MANAGE SUBSCRIPTION
+        </button>
+      </div>
+      <p>No credit Card Needed</p>
+      <img class="trustpilot-image" src="/trustpilot web file converted.png" alt="Trustpilot logo">
+    </div>
+    <div class="screen-photo">
+      <img src="/screen-photo.png" alt="screen photo">
+    </div>
+  </section>
+  <section class="info-section">
+    <div class="info-box">
+      <img class="button-icons" src="/optimized.png" alt="AI-Optimized icon">
+      <h1>AI-Optimized</h1>
+      <p>Buffer-free, personalized streaming.</p>
+    </div>
+    <div class="info-box">
+      <img class="button-icons" src="/secured payment.png" alt="Secured Payment methods icon">
+      <h1>Secured Payment Methods</h1>
+      <p>Safeguard your data with encrypted access.</p>
+    </div>
+    <div class="info-box">
+      <img class="button-icons" src="/anonyme.png" alt="VPN Protection icon">
+      <h1>VPN Protection</h1>
+      <p>Safeguard your data with encrypted access.</p>
+    </div>
+    <div class="info-box">
+      <img class="button-icons" src="/browse.png" alt="Worldwide Channels icon">
+      <h1>Worldwide Channels</h1>
+      <p>Access Irish, US, UK, CA & more.</p>
+    </div>
+    <div class="info-box">
+      <img class="button-icons" src="/bouton-de-lecture-rond.png" alt="On-Demand Content icon">
+      <h1>On-Demand Content</h1>
+      <p>Binge from a huge updated content library anytime.</p>
+    </div>
+    <div class="info-box">
+      <img class="button-icons" src="/4k.png" alt="4K & HD Quality icon">
+      <h1>4K & HD Quality</h1>
+      <p>Crystal-clear live channels and on-demand shows.</p>
+    </div>
+  </section>
+  <section class="content-section">
+    <div class="animated-text">
+      <h3>Revolutionizing IPTV with AI Technology</h3>
+      <p>AI-Driven Tech for Seamless, Buffer-Free Streaming. Experience the future of television with our cutting-edge
+        technology.</p>
+    </div>
+
+    <div class="animated-text">
+      <h3>Instant Setup – No Hassles, No Delays</h3>
+      <p>Activate & Stream in Seconds – No Configurations Needed. Start watching your favorite content immediately.</p>
+    </div>
+
+    <div class="animated-text">
+      <h3>Available in 129+ Countries Worldwide</h3>
+      <p>No Geo-Restrictions. Watch Anywhere, Anytime. Global access to premium content at your fingertips.</p>
+    </div>
+
+    <div class="animated-text">
+      <h3>24/7 Instant Support - Anytime</h3>
+      <p>Our expert team of 20+ professionals is always on standby, ready to assist you day or night.</p>
+    </div>
+    <div class="animated-text">
+      <h3>💰 Risk-Free 120-Day Guarantee</h3>
+      <p>Love it or get a full refund. No hassle.</p>
+    </div>
+  </section>
+  <section class="Channel">
+    <div class="channels-container">
+      <div class="image-section">
+        <img src="/Untitled design.png" alt="Channels Design">
+      </div>
+      <div class="subscription-text">
+        <div class="scrolling-text-container">
+          <div class="highlight-zone"></div>
+          <div class="scrolling-text">
+            <span>Peacock</span>
+            <span>Max</span>
+            <span>Disney Plus</span>
+            <span>Netflix</span>
+            <span>Prime</span>
+            <span>Hulu</span>
+            <!-- Text repeats for seamless scrolling -->
+            <span>Peacock</span>
+            <span>Max</span>
+            <span>Disney Plus</span>
+            <span>Netflix</span>
+            <span>Prime</span>
+            <span>Hulu</span>
+          </div>
+        </div>
+        <div class="content">
+          <p>Experience the best in sports, news, and entertainment with our AI-powered IPTV</p>
+
+          <div class="Subscription-button">
+            <button class="manage-subscription">Manage Subscription</button>
+            <span class="offer">40% OFF + Extra Free Months !</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="device-section">
+    <section class="device-type">
+      <div class="button-toggle">
+        <button [class.active]="selectedDevice === 'apple'" (click)="selectDevice('apple')">
+          Apple Device
+        </button>
+        <button [class.active]="selectedDevice === 'other'" (click)="selectDevice('other')">
+          All Other Devices
+        </button>
+      </div>
+    </section>
+    <!-- Apple Content -->
+    <div class="device-content" *ngIf="selectedDevice === 'apple'">
+      <div class="text-container">
+        <p class="update-text">Apple Setup</p>
+        <h1>Seamless Setup on <br>Apple Devices</h1>
+        <p>Instantly connect your Apple TV, iPhone, or iPad. Enjoy 13,000+ live channels, movies, and shows in crisp 4K,
+          all powered by AI.</p>
+        <div class="button-container">
+          <button (click)="scrollToSection('section1')">
+            <img class="button-icons" src="/logo-apple.png"> Start Streaming on Apple Devices
+          </button>
+        </div>
+        <img class="trustpilot-image" src="/trustpilot web file converted.png" alt="Trustpilot logo">
+      </div>
+      <div class="image-container">
+        <img src="/apple-setup-image.png">
+      </div>
+    </div>
+
+    <!-- Other Devices Content -->
+    <div class="device-content" *ngIf="selectedDevice === 'other'">
+      <div class="text-container">
+        <p class="update-text">Universal Setup</p>
+        <h1>Automatic Setup on <br>Any Devices</h1>
+        <p>Works on Android, Firestick, Roku, Windows, and more—just install the app. Our friendly support will have you
+          streaming in minutes, hassle-free.</p>
+        <div class="button-container">
+          <button (click)="scrollToSection('section1')">
+            <img class="button-icons" src="/other-devices.png"> Start Streaming
+          </button>
+        </div>
+        <img class="trustpilot-image" src="/trustpilot web file converted.png" alt="Trustpilot logo">
+      </div>
+      <div class="image-container">
+        <img src="/other-devices-photo.png">
+      </div>
+    </div>
+  </section>
+  
+  <section class="pricing-container" id="section1">
+    <div class="pricing-title">
+      <h1>Manage<br>
+        <span> Subscription</span>
+      </h1>
+      <p>Pick the plan that fits your streaming needs.</p>
+    </div>
+
+    <div class="button-toggle">
+      <button [class.active]="selectedPlanType === 'individual'" (click)="selectPlanType('individual')">
+        Individual
+      </button>
+      <button [class.active]="selectedPlanType === 'family'" (click)="selectPlanType('family')">
+        Family - Save 40%
+      </button>
+    </div>
+
+    <div class="plans-container">
+      <div *ngFor="let plan of plans" class="plan-card" [class.popular]="plan.isPopular">
+        <div class="discount">{{ plan.discountText }}</div>
+        <div class="plan-header">
+          <h3>{{ plan.title }}</h3>
+          <div class="price-section">
+            <div class="current-price">
+              <span class="amount">{{ plan.price }}</span>
+              <span class="duration">{{ plan.duration }}</span>
+            </div>
+            <div class="description">{{ plan.description }}</div>
+          </div>
+        </div>
+
+        <div class="plan-features">
+          <ul>
+            <li *ngFor="let feature of plan.features">{{ feature }}</li>
+          </ul>
+        </div>
+        <div class="full-width-divider"></div>
+
+        <button class="cta-button">
+          <span class="cta-text" [routerLink]="['/checkout']">{{ plan.ctaText }}</span>
+
+        </button>
+      </div>
+    </div>
+
+    <div class="pricing-footer">
+      <p> <img src="information-button.png" alt="info icon">No hidden fees. Cancel anytime.</p>
+      <div class="payment-photos">
+        <img src="/Revolut.png" alt="Revolut">
+        <img src="paypal.png" alt="Paypal">
+        <img src="/USDT.png" alt="USDT Transfert">
+        <img src="/western.png" alt="WesternUnion">
+      </div>
+    </div>
+  </section>
+  <section class="Access-contact" id="section2">
+    <div class="custom-device-content">
+      <div class="custom-text-container">
+        <h3>GET YOUR FREE 24-HOURS IPTV <br>ACCESS NOW!</h3>
+        <p class="custom-text-description">No Catch. No Hassle. Just Premium Content.</p>
+        <div class="custom-button-container">
+          <p><img class="custom-button-icons" src="/whatsapp.png">+212 636-863640</p>
+          <p><img class="custom-button-icons" src="/email.png">quicksupport&#64;bingebear.tv</p>
+        </div>
+      </div>
+      <div class="custom-filling-contact">
+        <form class="custom-form" (ngSubmit)="submitForm()">
+          <div class="custom-form-wrapper">
+            <div class="custom-input-container">
+              <div class="custom-input-block">
+                <label for="email">Email Address</label>
+                <input class="custom-input" id="email" [(ngModel)]="form.email" name="email"
+                  placeholder="Your Email Address" required>
+              </div>
+              <div class="custom-input-block">
+                <label for="phone">WhatsApp Number</label>
+                <input class="custom-input" id="phone" [(ngModel)]="form.phone" name="phone"
+                  placeholder="Enter Whatsapp Number (+353)" required>
+              </div>
+            </div>
+            <div class="custom-submit-block">
+              <button class="custom-submit" type="submit">UNLOCK FREE 24H TRIAL</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="revolut-subscription-section">
+    <div class="revolut-subscription-content">
+      <div class="revolut-subscription-text-container">
+        <img class="revolut-subscription-icon" src="/Untitled design (50).png" alt="Subscription Icon">
+        <h1>Pay Safely🤑</h1>
+        <p>No hidden fees, no hassle—just quick, secure transfers.<br> It’s the easiest way to pay for your
+          subscription.</p>
+        <div class="revolut-subscription-button-container">
+          <button class="revolut-subscription-button" (click)="scrollToSection('section1')">
+            Manage Subscription
+          </button>
+          <p class="revolut-subscription-tagline">Safe & Trusted</p>
+        </div>
+      </div>
+      <div class="revolut-subscription-image-container">
+        <img src="/Revolut-phone.png" alt="Subscription Phone">
+      </div>
+    </div>
+  </section>
+  <section class="Accodions">
+    <div class="Accodions-header">
+      <h3>5 Stars Customer • Support</h3>
+      <h1>Frequently Asked Questions (FAQ)</h1>
+    </div>
+    <div class="accordion">
+      <!-- Accordion Item 1 -->
+      <div class="accordion-item" [class.active]="isOpen1">
+        <button class="accordion-header" (click)="isOpen1 = !isOpen1">
+          BingeBear - The Feature of IPTV
+          <span class="icon">{{ isOpen1 ? '-' : '+' }}</span>
+        </button>
+        <div class="accordion-content" [class.open]="isOpen1">
+          <p>
+            BingeBear is the best IPTV provider in Ireland and the UK, powered by cutting-edge AI technology. We’re not
+            just another IPTV service—we offer 50,000+ channels and 120k movies and series from around the globe,
+            including the USA, UK, Ireland, and more.
+          </p>
+          <br>
+          <p>
+            No more buffering. BingeBear IPTV is smooth, fast, and perfect for live games, thanks to our AI-powered
+            technology that guarantees no interruptions.
+          </p>
+          <br>
+          <p>
+            24/7 Customer support? We’ve got 20 agents standing by, ready to help with anything you need—whether it's
+            setting up your IPTV box, troubleshooting, or answering your questions.
+          </p>
+          <br>
+          <p>
+            Want to test it out? Get started with our IPTV free trial and experience why we’re the best IPTV and IPTV
+            service in Ireland and the UK.
+          </p>
+          <br>
+          <p>
+            <strong>Live TV</strong>: Watch sports, news, movies, and international channels from around the world.
+            Whether you're in IPTV Ireland, the IPTV UK, or anywhere else, we’ve got you covered with the best IPTV
+            experience.
+          </p>
+          <br>
+          <p>
+            <strong>Video on Demand (VOD)</strong>: Enjoy Hollywood, Bollywood, and Netflix-style content whenever you
+            want. No waiting—just click and play with our IPTV service.
+          </p>
+          <br>
+          <p>
+            <strong>Catch-Up & Time-Shifted TV</strong>: Missed a show? No problem. With our IPTV subscription, you can
+            watch anytime, even if you’ve missed the live broadcast.
+          </p>
+          <br>
+          <p>
+            <strong>Worldwide Coverage</strong>: IPTV Ireland, IPTV UK, or anywhere you’re located, BingeBear IPTV works
+            without any geo-restrictions. Watch best IPTV anywhere with the best IPTV provider.
+          </p>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Accordion Item 2 -->
+      <div class="accordion-item" [class.active]="isOpen2">
+
+        <button class="accordion-header" (click)="isOpen2 = !isOpen2">
+          How Does IPTV Work?
+          <span class="icon">{{ isOpen2 ? '-' : '+' }}</span>
+        </button>
+        <div class="accordion-content" [class.open]="isOpen2">
+          <p>
+            <strong>IPTV (Internet Protocol Television)</strong> delivers television content over the internet, allowing
+            you to stream your favorite channels and on-demand content without relying on outdated cable or satellite
+            connections.
+          </p>
+          <br>
+          <ol>
+            <li>Get an IPTV subscription with BingeBear IPTV.</li>
+            <li>
+              Contact one of our agents via <a>WhatsApp</a>,<strong> email</strong>, or right here on our website.
+              They’ll guide you through the setup process and get <strong>BingeBear IPTV</strong> up and running on your
+              device—<strong>no hassle, no stress</strong>.
+            </li>
+            <li>
+              Tadah! It’s working. Enjoy watching on any device. If you need assistance, our agents are ready to help
+              anytime. Contact them here:
+              <ul>
+                <br>
+                <li><a><strong>WhatsApp</strong></a>: +212 636-863840</li>
+                <li><strong>Email</strong>: support&#64;bingebear.tv</li>
+              </ul>
+            </li>
+          </ol>
+          <br>
+          <p>
+            Whether you’re in IPTV Ireland, looking for the best IPTV subscription, or simply after a reliable IPTV
+            service, BingeBear IPTV gives you the best IPTV experience on the market. It’s TV, but smarter, faster, and
+            better.
+          </p>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Accordion Item 3 -->
+      <div class="accordion-item" [class.active]="isOpen3">
+        <button class="accordion-header" (click)="isOpen3 = !isOpen3">
+          Pricing: The Best Deal For Your IPTV Needs
+          <span class="icon">{{ isOpen3 ? '-' : '+' }}</span>
+        </button>
+        <div class="accordion-content" [class.open]="isOpen3">
+          <p>
+            Get the best IPTV experience with BingeBear IPTV! We offer the best prices and best IPTV subscription plans
+            designed to fit your needs. Buy IPTV today and enjoy HD & 4K content with no hidden fees.
+          </p>
+          <br>
+          <a>Basic Plan €69/year (12 months + 2 months free = 14 months total)</a>
+          <p>Perfect for trying out the service at the best price.</p>
+          <br>
+          <a>Popular Plan: €118 for 2 years (24 months + 4 months free = 28 months total)</a>
+          <p>A great option for long-term savings.</p>
+          <br>
+          <a>Premium Plan: €169 for 3 years (36 months + 6 months free = 42 months total)</a>
+          <p>The best value for dedicated IPTV users.</p>
+          <br>
+          <a>Lifetime Plan: €349 one-time payment</a>
+          <p>The ultimate deal for those who want to enjoy IPTV forever.</p>
+          <br>
+          <a>Grab your IPTV subscription now </a>
+          <p>and start watching with no limits. Get the best IPTV service-fast, reliable, and no BS.</p>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Accordion Item 4 -->
+      <div class="accordion-item" [class.active]="isOpen4">
+        <button class="accordion-header" (click)="isOpen4 = !isOpen4">
+          Do you offer a free trial?
+          <span class="icon">{{ isOpen4 ? '-' : '+' }}</span>
+        </button>
+        <div class="accordion-content" [class.open]="isOpen4">
+          <p>
+            Absolutely! Get a 24-hour free IPTV trial with no credit card needed. Experience free IPTV and start
+            streaming immediately.
+          </p>
+          <br>
+          <p>
+            We will set up IPTV easily with apps like MYTVOnline2, Tivimate, or VuPlayer. You can even use Xtream Codes
+            or IboProPlayer to get started quickly.
+          </p>
+          <br>
+          <p>
+            Click on the <a>"TRY FREE – 24H ACCESS"</a> button on our website.
+          </p>
+          <br>
+          <p>
+            <strong>Contact us via email,<a> WhatsApp</a>, or right here on the website</strong>, and we’ll get your
+            <strong>IPTV trial set up, no hassle</strong>.
+          </p>
+          <br>
+          <p>
+            Enjoy your free trial today!
+          </p>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Accordion Item 5 -->
+      <div class="accordion-item" [class.active]="isOpen5">
+        <button class="accordion-header" (click)="isOpen5 = !isOpen5">
+          Are there any hidden fees?
+          <span class="icon">{{ isOpen5 ? '-' : '+' }}</span>
+        </button>
+        <div class="accordion-content" [class.open]="isOpen5">
+          <p>
+            No, with BingeBear IPTV, our pricing is 100% transparent—no hidden fees. The subscription cost covers all
+            features and services, giving you a safe IPTV experience you can trust.
+          </p>
+          <br>
+          <p>
+            We offer you legal IPTV, trusted IPTV, and good IPTV quality without the hassle. Enjoy a seamless,
+            worry-free streaming experience every time.
+          </p>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Accordion Item 6 -->
+      <div class="accordion-item" [class.active]="isOpen6">
+        <button class="accordion-header" (click)="isOpen6 = !isOpen6">
+          Compatibility & Devices - Stream Anytime, Anywhere
+          <span class="icon">{{ isOpen6 ? '-' : '+' }}</span>
+        </button>
+        <div class="accordion-content" [class.open]="isOpen6">
+          <p>
+            BingeBear IPTV works seamlessly across a wide range of devices, so you can enjoy your favorite content with
+            no interruptions. Here are just a few of the devices we support:
+          </p>
+          <p><strong>Apple Devices</strong>: Apple TV, iPhone, iPad (iOS system)</p>
+          <br>
+          <p><strong>Android Devices</strong>: Android Box, Smartphones, Tablets, Android TV</p>
+          <br>
+          <p><strong>Streaming Devices</strong>: Amazon Firestick, Roku, and other Fire TV devices</p>
+          <br>
+          <p><strong>Computers & Laptops</strong>: Windows & Mac</p>
+          <br>
+          <p><strong>MAG Boxes</strong>: e.g., MAG 524, MAG 524W3</p>
+          <br>
+          <p><strong>Gaming Consoles</strong>: PlayStation, Xbox</p>
+          <br>
+          <p><strong>Smart TVs</strong>: Compatible with all major Smart TVs like Samsung, LG, Sony, and more</p>
+          <br>
+          <p>
+            No matter your device, BingeBear IPTV makes it easy to stream high-quality content wherever you are. Start
+            watching today on your preferred device!
+          </p>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Accordion Item 7 -->
+      <div class="accordion-item" [class.active]="isOpen7">
+        <button class="accordion-header" (click)="isOpen7 = !isOpen7">
+          How can I renew my IPTV subscription?
+          <span class="icon">{{ isOpen7 ? '-' : '+' }}</span>
+        </button>
+        <div class="accordion-content" [class.open]="isOpen7">
+          <p>
+            It’s simple. Before your IPTV subscription expires, you’ll get a notification with easy-to-follow renewal
+            instructions. No automatic renewals here—you stay in control.
+          </p>
+          <br>
+          <p>
+            If you're loving our IPTV service and want to keep streaming the best IPTV, just follow the steps. If not,
+            feel free to cancel—the choice is yours.
+          </p>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Accordion Item 8 -->
+      <div class="accordion-item" [class.active]="isOpen8">
+        <button class="accordion-header" (click)="isOpen8 = !isOpen8">
+          Which app should I use for BingeBear IPTV?
+          <span class="icon">{{ isOpen8 ? '-' : '+' }}</span>
+        </button>
+        <div class="accordion-content" [class.open]="isOpen8">
+          <p>
+            BingeBear IPTV works seamlessly with all IPTV player apps, so you can enjoy IPTV Ireland content without
+            hassle. Some of the top options include: ( Iboproplayer highly recommended )
+          </p>
+          <br>
+          <ul>
+            <li><strong>IBO PRO PLAYER</strong></li>
+            <li><strong>BOB PLAYER</strong></li>
+            <li><strong>VU PLAYER</strong></li>
+            <li><strong>IPTV SMARTERS</strong></li>
+            <li><strong>MYTVONLINE 2</strong></li>
+            <li><strong>TIVIMATE</strong></li>
+            <li><strong>SMARTONE</strong></li>
+            <li><strong>SMART STB</strong></li>
+            <li><strong>XCIPTV</strong></li>
+          </ul>
+          <br>
+          <p>etc...</p>
+          <br>
+          <p>
+            Pick the one that suits your device and get started with your IPTV subscription. Whether you're streaming
+            from your phone, smart TV, or set-top box, we’ve got you covered.
+          </p>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Accordion Item 9 -->
+      <div class="accordion-item" [class.active]="isOpen9">
+        <button class="accordion-header" (click)="isOpen9 = !isOpen9">
+          Do you provide Xtream Codes or M3U URL?
+          <span class="icon">{{ isOpen9 ? '-' : '+' }}</span>
+        </button>
+        <div class="accordion-content" [class.open]="isOpen9">
+          <p>
+            Absolutely! When you purchase your IPTV subscription, we provide all login details to get you started,
+            including:
+          </p>
+          <br>
+          <ul>
+            <li><strong>Xtream Codes</strong>: Playlist Name, Username, Password, URL + Port</li>
+            <li><strong>M3U URL</strong></li>
+            <li><strong>EPG URL</strong></li>
+          </ul>
+          <br>
+          <p>
+            This ensures full compatibility with IBO PRO PLAYER, Tivimate, myTVonline2, IPTV Smarters, IPTV Smarters
+            Pro, or any other IPTV app you prefer, so you can start streaming without any hassle.
+          </p>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Accordion Item 10 -->
+      <div class="accordion-item" [class.active]="isOpen10">
+        <button class="accordion-header" (click)="isOpen10 = !isOpen10">
+          Can I use one account on multiple devices?
+          <span class="icon">{{ isOpen10 ? '-' : '+' }}</span>
+        </button>
+        <div class="accordion-content" [class.open]="isOpen10">
+          <p>
+            Yes, you can use our accounts on two devices, but not simultaneously.
+          </p>
+          <br>
+          <p>
+            For multi-device streaming, you can choose a plan that supports it, such as:
+          </p>
+          <br>
+          <p><a>Popular Plan</a>/ <a>Premium Plan</a>/<a>Lifetime Plan</a>-These offer flexibility:</p>
+          <br>
+          <p>Use one account for 28 months and watch on two TVs (but not at the same time).</p>
+          <br>
+          <p>OR <strong>Split the subscription duration into 2 or 3 parts</strong> and watch on multiple devices at
+            once.</p>
+          <br>
+          <p>
+            This way, you can customize your plan to match your viewing needs!
+          </p>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Accordion Item 11 -->
+      <div class="accordion-item" [class.active]="isOpen11">
+        <button class="accordion-header" (click)="isOpen11 = !isOpen11">
+          What is your refund policy?
+          <span class="icon">{{ isOpen11 ? '-' : '+' }}</span>
+        </button>
+        <div class="accordion-content" [class.open]="isOpen11">
+          <p>
+            We offer a <strong>120-day money-back guarantee</strong>. If you’re not satisfied with your <strong>IPTV
+              subscription</strong> within this period, you get a <strong>full refund—no questions asked.</strong>
+          </p>
+          <br>
+          <p>
+            That's how we back up our IPTV service and give you the <strong>IPTV guaranteed satisfaction</strong> you
+            deserve.
+          </p>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Accordion Item 12 -->
+      <div class="accordion-item" [class.active]="isOpen12">
+        <button class="accordion-header" (click)="isOpen12 = !isOpen12">
+          What is the EPG Program Guide?
+          <span class="icon">{{ isOpen12 ? '-' : '+' }}</span>
+        </button>
+        <div class="accordion-content" [class.open]="isOpen12">
+          <p>
+            <strong>EPG = Electronic Program Guide</strong>. It’s a TV schedule feature that lets you:
+          </p>
+          <br>
+          <ul>
+            <li><strong>See what’s playing now & next</strong></li>
+            <li><strong>Browse upcoming shows & events</strong></li>
+            <li><strong>Plan your entertainment with ease</strong></li>
+          </ul>
+          <br>
+          <p>
+            It’s like your old TV guide—but <strong>smarter.</strong>
+          </p>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Accordion Item 13 -->
+      <div class="accordion-item" [class.active]="isOpen13">
+        <button class="accordion-header" (click)="isOpen13 = !isOpen13">
+          What is the Catch-Up Feature?
+          <span class="icon">{{ isOpen13 ? '-' : '+' }}</span>
+        </button>
+        <div class="accordion-content" [class.open]="isOpen13">
+          <p>
+            <strong>Missed a live show? No problem.</strong>
+          </p>
+          <br>
+          <p>
+            Our Catch-Up TV feature lets you rewind and watch past programs on selected channels.
+          </p>
+          <br>
+          <p>Go back <strong>up to 7 days</strong></p>
+          <br>
+          <p>Works on major networks & sports channels</p>
+          <br>
+          <p>
+            Never miss a moment again.
+          </p>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Accordion Item 14 -->
+      <div class="accordion-item" [class.active]="isOpen14">
+        <button class="accordion-header" (click)="isOpen14 = !isOpen14">
+          What customer support options are available?
+          <span class="icon">{{ isOpen14 ? '-' : '+' }}</span>
+        </button>
+        <div class="accordion-content" [class.open]="isOpen14">
+          <p>
+            We provide <strong>24/7 customer support</strong> through our expert team of over <strong>20
+              professionals</strong>. Whether you need help with your <strong>IPTV setup</strong> or have any technical
+            issues, we’ve got you covered <strong>anytime, anywhere.</strong>
+          </p>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Accordion Item 15 -->
+      <div class="accordion-item" [class.active]="isOpen15">
+        <button class="accordion-header" (click)="isOpen15 = !isOpen15">
+          How can I contact customer support?
+          <span class="icon">{{ isOpen14 ? '-' : '+' }}</span>
+        </button>
+        <div class="accordion-content" [class.open]="isOpen15">
+          <p>Simple. You have <strong>3 options:</strong>
+          </p>
+          <br>
+          <ul>
+            <li><strong>WhatsApp: Quick response team</strong></li>
+            <li><strong>Email: (Support team available 24/7)</strong></li>
+            <li><strong>Live Chat: Directly from our website</strong></li>
+          </ul>
+          <br>
+          <p>We believe in REAL customer service – because you deserve better.</p>
+          <br>
+          <p><strong>that's why 20 agents it's ready to support you 24/7</strong></p>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Accordion Item 16 -->
+      <div class="accordion-item" [class.active]="isOpen16">
+        <button class="accordion-header" (click)="isOpen16 = !isOpen16">
+          WHY BINGEBEAR IPTV IS #1
+          <span class="icon">{{ isOpen16 ? '-' : '+' }}</span>
+        </button>
+        <div class="accordion-content" [class.open]="isOpen16">
+          <p>
+            <strong>You have two choices:</strong>
+          </p>
+          <br>
+          <ul>
+            <li><strong>Option 1</strong>: <u>Keep wasting money on unreliable IPTV</u> providers that buffer, crash,
+              and ruin your experience.</li>
+            <li><strong>Option 2</strong>: Switch to <u>BingeBear IPTV and stream like a king</u>—with no limits, no
+              stress, and no BS.</li>
+          </ul>
+          <br>
+          <p>
+            Want the best IPTV service? THIS IS IT.
+          </p>
+          <br>
+          <p>
+            Get started now and experience the best IPTV in Ireland and the UK! Don't settle for a <strong>dodgy box or
+              unreliable streaming anymore.</strong>
+          </p>
+          <br>
+          <p>
+            <strong>Claim your subscription now—exclusive private servers, act fast!</strong>
+          </p>
+        </div>
+      </div>
+      <hr>
+    </div>
+  </section>
+  <section class="testimonials">
+    <div class="testimonials-header">
+      <h3>★Testimonials</h3>
+      <p>Wondering why so many people love our IPTV service? Read real stories from our customers</p>
+    </div>
+    <h1>Happy Client Experiences</h1>
+    <div class="testimonial-grid">
+      <!-- Testimonial 1 -->
+      <div class="testimonial">
+        <p class="comment">
+          Just got this IPTV last week & so far so good, was worried about buffering but none so far. I'm well
+          impressed,
+          cheers!
+        </p>
+        <div class="rating">
+          ★ ★ ★ ★ ★
+        </div>
+        <p class="client">
+          Sean M</p>
+        <span class="location">Ireland</span>
+
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="testimonial">
+        <p class="comment">
+          Channel selection is savage, I was a bit lost at first but got the hang of it quick. Won't be leaving the
+          couch
+          any time soon, haha!
+        </p>
+        <div class="rating">
+          ★ ★ ★ ★ ★
+        </div>
+        <p class="client">
+          Conor B</p>
+        <span class="location">Ireland</span>
+
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="testimonial">
+        <p class="comment">
+          Fed up paying Sky a fortune, tried this & sure I won't be going back. Everything I watch plus loads more, no
+          regrets!
+        </p>
+        <div class="rating">
+          ★ ★ ★ ★ ★
+        </div>
+        <p class="client">
+          Mick O</p>
+        <span class="location">Ireland</span>
+
+      </div>
+      <!-- Testimonial 4 -->
+      <div class="testimonial">
+        <p class="comment">
+          im no tech wiz but setup was dead easy, took about 5 mins & i was off watchin my shows, grand job
+        </p>
+        <div class="rating">
+          ★ ★ ★ ★ ★
+        </div>
+        <p class="client">
+          John Davies</p>
+        <span class="location">Ireland</span>
+
+      </div>
+
+      <!-- Testimonial 5 -->
+      <div class="testimonial">
+        <p class="comment">
+          my kids are mad for the cartoon channels, bless em, i finally get some peace in the evenings, happy days </p>
+        <div class="rating">
+          ★ ★ ★ ★ ★
+        </div>
+        <p class="client">
+          Orla R</p>
+        <span class="location">Ireland</span>
+
+      </div>
+
+      <!-- Testimonial 6 -->
+      <div class="testimonial">
+        <p class="comment">
+          i can watch the gaa on my phone, never had better streaming so chuffed tbh, worth every penny </p>
+        <div class="rating">
+          ★ ★ ★ ★ ★
+        </div>
+        <p class="client">
+          Joseph N</p>
+        <span class="location">Austra</span>
+
+      </div>
+      <!-- Testimonial 7 -->
+      <div class="testimonial">
+        <p class="comment">
+          the price is fair enough, i used to pay double for half the channels, definitely recommend givin it a lash if
+          ya
+          love sports </p>
+        <div class="rating">
+          ★ ★ ★ ★ ★
+        </div>
+        <p class="client">
+          Clodagh M</p>
+        <span class="location">Ireland</span>
+
+      </div>
+
+      <!-- Testimonial 8 -->
+      <div class="testimonial">
+        <p class="comment">
+          honestly, i was a bit sceptical at first but it’s turned out class. my husband watches footy all day and i’m
+          hooked on the movies section, so we’re both happy out</p>
+        <div class="rating">
+          ★ ★ ★ ★ ★
+        </div>
+        <p class="client">
+          Paddy</p>
+        <span class="location">Ireland</span>
+
+      </div>
+
+      <!-- Testimonial 9 -->
+      <div class="testimonial">
+        <p class="comment">
+          customer service is sound, i had a small issue with my account and they sorted it quick. real people who
+          actually help ya, not some robot</p>
+        <div class="rating">
+          ★ ★ ★ ★ ★
+
+        </div>
+        <p class="client">
+          Robert R</p>
+        <span class="location">Ireland</span>
+
+      </div>
+      <div src="trustpilot-image">
+        <img src="">
+      </div>
+    </div>
+  </section>
+
+
+  <footer class="footer">
+    <h2>Working With the Best in IPTV</h2>
+    <div class="container">
+      <swiper-container loop="true" space-between="30" slides-per-view="5" autoplay="true">
+        <swiper-slide>
+          <img src="1.png" alt="IPTV Partner Logo">
+        </swiper-slide>
+        <swiper-slide>
+          <img src="2.png" alt="IPTV Partner Logo">
+        </swiper-slide>
+        <swiper-slide>
+          <img src="3.png" alt="IPTV Partner Logo">
+        </swiper-slide>
+        <swiper-slide>
+          <img src="5.png" alt="IPTV Partner Logo">
+        </swiper-slide>
+        <swiper-slide>
+          <img src="6.png" alt="IPTV Partner Logo">
+        </swiper-slide>
+        <swiper-slide>
+          <img src="7.png" alt="IPTV Partner Logo">
+        </swiper-slide>
+      </swiper-container>
+    </div>
+    <hr>
+    <section class="rights">
+      <p class="rights-texts">© 2025 BingeBearTV. All rights reserved.</p>
+    </section>
+  </footer>
+</section>

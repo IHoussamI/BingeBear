@@ -1,0 +1,228 @@
+.channels-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #171717;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.image-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
+  padding-right: 40px;
+}
+
+.image-section img {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  /* Makes image smaller */
+}
+
+.text-container {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.scrolling-text-container {
+  height: 150px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
+  display: flex;
+  justify-content: flex-start; 
+  align-items: center;
+  padding-left: 40px;
+}
+
+.highlight-zone {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.scrolling-text {
+  display: flex;
+  flex-direction: column;
+  animation: scrollVertical 8s linear infinite;
+  text-align: left;
+}
+
+.scrolling-text span {
+  font-size: 48px;
+  font-weight: bold;
+  padding: 5px 0;
+  color: #4a4a4a;
+  text-align: left;
+  position: relative;
+}
+
+.scrolling-text span.highlight {
+  color: #FFD700;
+  background: radial-gradient(circle at 0% 50%, rgba(255, 255, 0, 0.3) 20%, transparent 70%);
+  text-shadow: 0 0 10px rgba(206, 132, 47, 0.5);
+
+}
+
+@keyframes scrollVertical {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.scrolling-text-container::before,
+.scrolling-text-container::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.scrolling-text-container::before {
+  top: 0;
+  background: linear-gradient(to bottom, #171717, transparent);
+}
+
+.scrolling-text-container::after {
+  bottom: 0;
+  background: linear-gradient(to top, #171717b7, transparent);
+}
+
+.subscription-button {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  justify-content: flex-start; 
+}
+
+.content {
+  margin-top: 20px;
+  max-width: 450px;
+  text-align: left;
+}
+
+.content p {
+  color: #7A7A7A;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.manage-subscription {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  /* Prevents button text from wrapping */
+}
+
+.manage-subscription:hover {
+  background: white;
+  color: black;
+}
+
+.offer {
+  color: #7A7A7A;
+  margin: 0;
+  font-size: 0.8rem;
+  margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+  .channels-container {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+  }
+
+  .image-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    /* Aligns the content to the left */
+    text-align: left;
+    /* Aligns text to the left */
+  }
+
+  .text-container {
+    flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* Aligns the content to the left */
+  text-align: left; /* Aligns text to the left */
+  max-width: 450px; /* You can adjust this value */
+  margin-left: 20px; /* Pushes it closer to the image */
+  }
+
+  .scrolling-text span {
+    font-size: 28px;
+  }
+
+  .button-container {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* 📌 Tablets & Small Laptops (768px - 1024px) */
+@media (max-width: 1024px) {
+  .channels-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .image-section {
+    max-width: 250px;
+    margin-bottom: 20px;
+  }
+
+  .text-container {
+    align-items: center;
+  }
+
+  .scrolling-text span {
+    font-size: 32px;
+  }
+
+  .button-container {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .content {
+    flex-direction: column;
+  }
+}
