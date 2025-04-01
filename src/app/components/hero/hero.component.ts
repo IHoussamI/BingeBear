@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, HostListener, CUSTOM_ELEMENTS_SCHEMA, AfterViewInit } from '@angular/core';
+import { Component, OnInit, HostListener, CUSTOM_ELEMENTS_SCHEMA, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { register } from 'swiper/element/bundle';
@@ -28,6 +28,9 @@ interface PricingPlan {
 })
 export class HeroComponent implements OnInit {
 
+  @ViewChild('swiper') swiperEl!: ElementRef;
+
+
   scrollToSection(sectionId: string): void {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -45,7 +48,11 @@ export class HeroComponent implements OnInit {
   ngOnInit() {
     this.animatedElements = Array.from(document.querySelectorAll('.animated-text'));
     this.checkScroll();
+
+
   }
+  imageList: string[] = Array.from({ length: 48 }, (_, i) => `/swiper-movies/movie${i + 1}.jpg`);
+
 
   @HostListener('window:scroll', ['$event'])
   onScroll() {
@@ -67,23 +74,20 @@ export class HeroComponent implements OnInit {
   steps = [
     {
       number: 1,
-      title: 'Pick a Plan',
-      description: 'Choose the best plan for you and submit your contact details. No payment needed yet.'
+      title: 'Enter Your Email Address',
     },
     {
       number: 2,
-      title: 'Instant Connection with an Agent',
-      description: 'Get connected with our expert agent who will activate your subscription and ensure everything runs smoothly.'
+      title: 'Add Your WhatsApp Number',
     },
     {
       number: 3,
-      title: 'Make Payment',
-      description: 'Make your payment hassle-free using your preferred method, with step-by-step guidance from our agent.'
+      title: 'Click and Unlock Free 24H Trial',
     },
     {
       number: 4,
-      title: 'Enjoy & Stay Connected',
-      description: 'Start using our service instantly and save our contact for any future support or inquiries.'
+      title: 'Instant Connection with an Agent',
+      description: 'Get connected with our expert agent who will activate your subscription and ensure everything runs smoothly.'
     }
   ];
   selectedDevice: string = 'apple'; // Default selection is 'apple'
@@ -138,7 +142,6 @@ export class HeroComponent implements OnInit {
   isOpen14 = false; 
   isOpen15 = false; 
   isOpen16 = false; 
-
   selectedPlanType: 'individual' | 'family' = 'individual';
 
   selectPlanType(type: 'individual' | 'family') {
@@ -230,42 +233,94 @@ export class HeroComponent implements OnInit {
 
   ngAfterViewInit() {
     this.setupHighlightEffect();
+    this.setupImageHoverEffect();
+    this.initializeSwiper();
+
   }
 
   private setupHighlightEffect() {
-    const container = document.querySelector('.scrolling-text-container') as HTMLElement;
-    const spans = document.querySelectorAll('.scrolling-text span');
+    const containers = document.querySelectorAll('.scrolling-text-container') as NodeListOf<HTMLElement>;
+    
+    if (containers.length === 0) return;
 
-    if (!container || spans.length === 0) return;
+    containers.forEach(container => {
+        const spans = container.querySelectorAll('.scrolling-text span');
+        
+        if (spans.length === 0) return;
 
-    const highlightZone = {
-      top: container.offsetHeight / 2 - 30,
-      bottom: container.offsetHeight / 2 + 30
-    };
+        const highlightZone = {
+            top: container.offsetHeight / 2 - 30,
+            bottom: container.offsetHeight / 2 + 30
+        };
 
-    const checkHighlight = () => {
-      spans.forEach(span => {
-        const rect = span.getBoundingClientRect();
-        const containerRect = container.getBoundingClientRect();
-        const spanCenter = rect.top - containerRect.top + rect.height / 2;
+        const checkHighlight = () => {
+            spans.forEach(span => {
+                const rect = span.getBoundingClientRect();
+                const containerRect = container.getBoundingClientRect();
+                const spanCenter = rect.top - containerRect.top + rect.height / 2;
 
-        if (spanCenter >= highlightZone.top && spanCenter <= highlightZone.bottom) {
-          span.classList.add('highlight');
+                if (spanCenter >= highlightZone.top && spanCenter <= highlightZone.bottom) {
+                    span.classList.add('highlight');
+                } else {
+                    span.classList.remove('highlight');
+                }
+            });
+        };
+
+        function animate() {
+            checkHighlight();
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    });
+}
+  private setupImageHoverEffect() {
+    const images = document.querySelectorAll('.image-section img');
+    
+    images.forEach(img => {
+      img.addEventListener('mousemove', (e: Event) => {
+        const mouseEvent = e as MouseEvent;
+        const rect = (img as HTMLElement).getBoundingClientRect();
+        const x = mouseEvent.clientX - rect.left;
+        const halfWidth = rect.width / 2;
+
+        // Remove both classes first
+        img.classList.remove('hover-left', 'hover-right');
+        
+        // Add appropriate class based on mouse position
+        if (x < halfWidth) {
+          img.classList.add('hover-left');
         } else {
-          span.classList.remove('highlight');
+          img.classList.add('hover-right');
         }
       });
-    };
 
-    function animate() {
-      checkHighlight();
-      requestAnimationFrame(animate);
-    }
-
-    animate();
+      img.addEventListener('mouseleave', () => {
+        img.classList.remove('hover-left', 'hover-right');
+      });
+    });
   }
-
-
-
-}
-
+  
+  // No need to register Swiper here as it's already registered in main.ts
+  
+  private initializeSwiper() {
+    const swiperElement = this.swiperEl.nativeElement;
+    const params = {
+      loop: true,
+      slidesPerView: 4,
+      speed: 1000,
+      autoplay: {
+        delay: 1000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true
+      }
+    };
+      
+      // Assign it to Swiper element
+      Object.assign(swiperElement, params);
+      swiperElement.initialize();
+    }
+  
+    movieImages: string[] = [];
+  }

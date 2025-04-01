@@ -1,49 +1,55 @@
-import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-test3',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './test3.component.html',
-  styleUrls: ['./test3.component.css']
+  styleUrls: ['./test3.component.css'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class Test3Component implements OnInit, AfterViewInit, OnDestroy {
-  private animationFrame: number = 0;
-
-  ngOnInit(): void {}
-
+export class Test3Component implements AfterViewInit {
+  @ViewChild('swiper') swiperEl!: ElementRef;
+  
+  // No need to register Swiper here as it's already registered in main.ts
+  
   ngAfterViewInit() {
-    this.setupHighlightEffect();
+    // Wait for the DOM to be fully loaded
+    setTimeout(() => {
+      // Get the swiper element
+      const swiperElement = this.swiperEl.nativeElement;
+      
+      // Pass parameters to Swiper
+      const params = {
+        loop: true,
+        slidesPerView: 4,
+        speed: 1000,
+        autoplay: {
+          delay: 1000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true
+        }
+      };
+      
+      // Assign it to Swiper element
+      Object.assign(swiperElement, params);
+      
+      // Initialize Swiper
+      swiperElement.initialize();
+    }, 0);
   }
 
-  ngOnDestroy() {
-    if (this.animationFrame) {
-      cancelAnimationFrame(this.animationFrame);
+
+  movieImages: string[] = [];
+
+  constructor() {
+    // Dynamically generate an array of 30 images from the available 48
+    for (let i = 1; i <= 30; i++) {
+      this.movieImages.push(`/public/swiper-movies/movie${i}.jpg`);
     }
   }
 
-  private setupHighlightEffect() {
-    const container = document.querySelector('.scrolling-section') as HTMLElement;
-    const words = document.querySelectorAll('.word') as NodeListOf<HTMLElement>;
-    
-    if (!container || !words.length) return;
+  imageList: string[] = Array.from({ length: 48 }, (_, i) => `/swiper-movies/movie${i + 1}.jpg`);
 
-    const checkHighlight = () => {
-      const containerRect = container.getBoundingClientRect();
-      const centerY = containerRect.top + containerRect.height / 2;
-
-      words.forEach(word => {
-        const wordRect = word.getBoundingClientRect();
-        const wordCenterY = wordRect.top + wordRect.height / 2;
-        
-        if (Math.abs(centerY - wordCenterY) < 30) {
-          word.classList.add('active');
-        } else {
-          word.classList.remove('active');
-        }
-      });
-
-      this.animationFrame = requestAnimationFrame(checkHighlight);
-    };
-
-    checkHighlight();
-  }
 }

@@ -2,46 +2,176 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 900px; 
+  margin: 0 auto; /* Centers the container */
+  padding: 20px; /* Adds some internal spacing */
   background-color: #171717;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
 }
 
-.image-section {
+/* Make first section's container wider */
+.Channel:first-child .channels-container {
+  max-width: 1200px;
+}
+
+.Channel:first-child .image-section {
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  max-width: 600px;
+  padding-right: 40px;
+  margin-bottom: 100px;
+  position: relative;
+}
+
+.Channel:first-child .image-section img {
+  width: 600px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  background: rgba(32, 32, 32, 0.8);
+  padding: 20px;
+  display: block;
+}
+
+/* Keep original styles for second image */
+.Channel:not(:first-child) .image-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   max-width: 400px;
   padding-right: 40px;
+  margin-bottom: 100px;
 }
 
-.image-section img {
-  width: 100%;
+.Channel:not(:first-child) .image-section img {
+  width: 400px;
   height: auto;
-  max-width: 300px;
-  /* Makes image smaller */
+  transition: transform 0.3s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  display: block;
 }
 
-.text-container {
-  flex: 2;
+/* Stats Section */
+.data-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.data-holder {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  width: 100%;
+}
+
+.info-unit {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUp 0.6s ease-out forwards;
 }
 
-.scrolling-text-container {
+.info-unit:nth-child(1) { animation-delay: 0.2s; }
+.info-unit:nth-child(2) { animation-delay: 0.4s; }
+.info-unit:nth-child(3) { animation-delay: 0.6s; }
+
+.info-bubble {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 215, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  transition: all 0.3s ease;
+}
+
+.info-bubble:hover {
+  transform: scale(1.1);
+  background: rgba(255, 215, 0, 0.1);
+  border-color: rgba(255, 215, 0, 0.6);
+}
+
+.info-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.info-text {
+  font-size: 14px;
+  color: #7A7A7A;
+  text-align: center;
+}
+
+/* Pop-up Animation */
+@keyframes slideUp {
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.subscription-text {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+}
+
+/* First section specific styles */
+.Channel:first-child .subscription-text {
+  max-width: 550px;
+  padding-left: 40px;
+}
+
+.Channel:first-child .scrolling-text-container {
   height: 150px;
   width: 100%;
   overflow: hidden;
   position: relative;
   background: transparent;
   display: flex;
-  justify-content: flex-start; 
+  justify-content: flex-start;
   align-items: center;
-  padding-left: 40px;
+  padding-left: 0;
+}
+
+/* Second section specific styles */
+.Channel:not(:first-child) .subscription-text {
+  max-width: 400px;
+}
+
+.Channel:not(:first-child) .scrolling-text-container {
+  height: 150px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 0;
 }
 
 .highlight-zone {
@@ -59,21 +189,21 @@
   flex-direction: column;
   animation: scrollVertical 8s linear infinite;
   text-align: left;
+
 }
 
 .scrolling-text span {
   font-size: 48px;
   font-weight: bold;
   padding: 5px 0;
-  color: #4a4a4a;
+  color: white;
   text-align: left;
   position: relative;
 }
 
 .scrolling-text span.highlight {
   color: #FFD700;
-  background: radial-gradient(circle at 0% 50%, rgba(255, 255, 0, 0.3) 20%, transparent 70%);
-  text-shadow: 0 0 10px rgba(206, 132, 47, 0.5);
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
 
 }
 
@@ -81,7 +211,6 @@
   0% {
     transform: translateY(0);
   }
-
   100% {
     transform: translateY(-50%);
   }
@@ -111,9 +240,46 @@
 .subscription-button {
   display: flex;
   align-items: center;
-  gap: 13px;
+  gap: 15px; 
   justify-content: flex-start; 
 }
+.manage-subscription {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: "Chivo", Sans-serif;
+  transition: all 0.3s ease;
+  white-space: nowrap; /* Prevents button text from wrapping */
+}
+
+.manage-subscription img {
+  filter: brightness(0) invert(1);
+  width: 20px;
+  height: 20px;
+  
+  transition: filter 0.3s ease;
+}
+
+.manage-subscription:hover{
+  background-color:white;
+  color: black;
+}
+.manage-subscription:hover img {
+  filter: none; /* On hover, the icon color returns to normal */
+}
+
+
+
+.text-container p:last-of-type {
+  font-size: 0.8rem;
+  color: #ffffff;
+  margin-top: 1rem;
+}
+
 
 .content {
   margin-top: 20px;
@@ -128,31 +294,16 @@
   line-height: 1.5;
 }
 
-.manage-subscription {
-  background: transparent;
-  border: 1px solid white;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  /* Prevents button text from wrapping */
-}
 
-.manage-subscription:hover {
-  background: white;
-  color: black;
-}
 
 .offer {
   color: #7A7A7A;
   margin: 0;
   font-size: 0.8rem;
-  margin-left: 10px;
-}
+  margin-left:10px;
+  font-family: "Chivo", Sans-serif;
 
+}
 @media (max-width: 768px) {
   .channels-container {
     flex-direction: column;
@@ -161,25 +312,13 @@
   }
 
   .image-section {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    /* Aligns the content to the left */
-    text-align: left;
-    /* Aligns text to the left */
+    max-width: 200px;
+    margin: 0 auto 20px;
   }
 
   .text-container {
-    flex: 2;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start; /* Aligns the content to the left */
-  text-align: left; /* Aligns text to the left */
-  max-width: 450px; /* You can adjust this value */
-  margin-left: 20px; /* Pushes it closer to the image */
+    align-items: center;
+    text-align: center;
   }
 
   .scrolling-text span {
@@ -225,4 +364,13 @@
   .content {
     flex-direction: column;
   }
+}
+
+/* Add JavaScript hover detection classes */
+.image-section img.hover-left {
+  transform: perspective(1000px) rotate3d(0, 1, 0, -8deg) !important;
+}
+
+.image-section img.hover-right {
+  transform: perspective(1000px) rotate3d(0, 1, 0, 8deg) !important;
 }

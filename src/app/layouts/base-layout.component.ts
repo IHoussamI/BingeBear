@@ -10,4 +10,8 @@ import { FooterComponent } from '../components/footer/footer.component';
   standalone: true,
   imports: [RouterModule]
 })
-export class BaseLayoutComponent {}
+export class BaseLayoutComponent {
+
+
+  
+}

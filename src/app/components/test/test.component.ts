@@ -16,39 +16,71 @@ export class TestComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         this.setupHighlightEffect();
+        this.setupImageHoverEffect();
+    }
+
+    private setupImageHoverEffect() {
+        const images = document.querySelectorAll('.image-section img');
+        
+        images.forEach(img => {
+            img.addEventListener('mousemove', (e: Event) => {
+                const mouseEvent = e as MouseEvent;
+                const rect = (img as HTMLElement).getBoundingClientRect();
+                const x = mouseEvent.clientX - rect.left;
+                const halfWidth = rect.width / 2;
+
+                // Remove both classes first
+                img.classList.remove('hover-left', 'hover-right');
+                
+                // Add appropriate class based on mouse position
+                if (x < halfWidth) {
+                    img.classList.add('hover-left');
+                } else {
+                    img.classList.add('hover-right');
+                }
+            });
+
+            img.addEventListener('mouseleave', () => {
+                img.classList.remove('hover-left', 'hover-right');
+            });
+        });
     }
 
     private setupHighlightEffect() {
-        const container = document.querySelector('.scrolling-text-container') as HTMLElement;
-        const spans = document.querySelectorAll('.scrolling-text span');
+        const containers = document.querySelectorAll('.scrolling-text-container') as NodeListOf<HTMLElement>;
         
-        if (!container || spans.length === 0) return;
+        if (containers.length === 0) return;
 
-        const highlightZone = {
-            top: container.offsetHeight / 2 - 30,    // half of highlight zone height
-            bottom: container.offsetHeight / 2 + 30   // half of highlight zone height
-        };
+        containers.forEach(container => {
+            const spans = container.querySelectorAll('.scrolling-text span');
+            
+            if (spans.length === 0) return;
 
-        const checkHighlight = () => {
-            spans.forEach(span => {
-                const rect = span.getBoundingClientRect();
-                const containerRect = container.getBoundingClientRect();
-                const spanCenter = rect.top - containerRect.top + rect.height / 2;
+            const highlightZone = {
+                top: container.offsetHeight / 2 - 30,
+                bottom: container.offsetHeight / 2 + 30
+            };
 
-                if (spanCenter >= highlightZone.top && spanCenter <= highlightZone.bottom) {
-                    span.classList.add('highlight');
-                } else {
-                    span.classList.remove('highlight');
-                }
-            });
-        };
+            const checkHighlight = () => {
+                spans.forEach(span => {
+                    const rect = span.getBoundingClientRect();
+                    const containerRect = container.getBoundingClientRect();
+                    const spanCenter = rect.top - containerRect.top + rect.height / 2;
 
-        // Check for highlights every frame
-        function animate() {
-            checkHighlight();
-            requestAnimationFrame(animate);
-        }
+                    if (spanCenter >= highlightZone.top && spanCenter <= highlightZone.bottom) {
+                        span.classList.add('highlight');
+                    } else {
+                        span.classList.remove('highlight');
+                    }
+                });
+            };
 
-        animate();
+            function animate() {
+                checkHighlight();
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        });
     }
 }

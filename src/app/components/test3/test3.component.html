@@ -1,28 +1,20 @@
-<div class="channels-container">
-    <div class="image-section">
-        <img src="/Untitled design.png" alt="Channels Design">
+<section class="movie-swiper-section">
+    <div class="movie-swiper-container">
+      <swiper-container 
+        #swiper 
+        init="false" 
+        autoplay="true" 
+        slides-per-view="5" 
+        slides-per-group="5" 
+        speed="1000" 
+        loop="true"
+        pause-on-mouse-enter="true">
+    
+        <swiper-slide *ngFor="let img of imageList">
+          <img [src]="img" alt="Movie poster" loading="lazy">
+        </swiper-slide>
+    
+      </swiper-container>
     </div>
-    <div class="scrolling-text-container">
-        <div class="highlight-zone"></div>
-        <div class="scrolling-text">
-            <span>Peacock</span>
-            <span>Max</span>
-            <span>Disney Plus</span>
-            <span>Netflix</span>
-            <span>Prime</span>
-            <span>Hulu</span>
-            <!-- Text repeats for seamless scrolling -->
-            <span>Peacock</span>
-            <span>Max</span>
-            <span>Disney Plus</span>
-            <span>Netflix</span>
-            <span>Prime</span>
-            <span>Hulu</span>
-        </div>
-        <div class="content">
-            <p>Experience the best in sports, news, and entertainment with our AI-powered IPTV</p>
-            <button class="manage-subscription">Manage Subscription</button>
-            <span class="offer">40% OFF + Extra Free Months !</span>
-        </div>
-    </div>
-</div>
+  </section>
+  
