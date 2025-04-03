@@ -1,106 +1,122 @@
-<section class="body">
+<section class="body" itemscope itemtype="https://schema.org/WebPage">
+
+  <!-- HEADER -->
   <header>
     <nav class="navbar">
-      <div class="bingebear-logo">
-        <img src="/BingeBear.TV (3).png" alt="bingebear-logo" routerLink="home" loading="">
-      </div>
-      <a class="signup-text" href="login">
+      <figure class="bingebear-logo" itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+        <img src="/BingeBear.TV (3).png" alt="bingebear-logo" routerLink="home" loading="lazy">
+      </figure>
+      <a class="signup-text">
         👋 Fill Out the Trial Form & Get Instant Access – No Effort, Just TV!
       </a>
-      <button (click)="scrollToSection('section2')" class="GetAPP">
-        <img class="button-icons" src="/lock-open.png">
+      <div class="GetAPP-container">
+      <button (click)="scrollToSection('section2')" class="GetAPP" aria-label="Try Free">
+        <img class="button-icons" src="/lock-open.png" loading="lazy" alt="Unlock icon">
         <span class="button-text-wrapper">
           <span class="button-text">TRY FREE</span>
           <span class="button-text hover-text">TRY FREE</span>
         </span>
-        </button>
+      </button>
+    </div>
     </nav>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
     <div class="text-container">
-      <p class="update-text">  ⭐ 4.9/5 Based on 10,000+ Reviews – Trusted by Clients Across Ireland      </p>
-      <h1>Save €1000 Yearly<br> with AI-Powered IPTV📡</h1>
-      <p >"I stopped paying for 7+ subscriptions each month, and it saved me a fortune. Now, I get all my entertainment in one place for a fraction of the cost." – John D., Dublin</p>
+      <p class="update-text">⭐ 4.9/5 Based on 10,000+ Reviews – Trusted by Clients Across Ireland</p>
+      <h1 itemprop="headline">Save €1000 Yearly<br> with AI-Powered IPTV📡</h1>
+      <p itemprop="description">"I stopped paying for 7+ subscriptions each month, and it saved me a fortune. Now, I get all my entertainment in one place for a fraction of the cost." – <span itemprop="author">John D.</span>, <span itemprop="location">Dublin</span></p>
       <div class="button-container">
-        <button (click)="scrollToSection('section2')">
-          <img class="button-icons" src="/lock-open.png">
+        <button (click)="scrollToSection('section2')" aria-label="Try Free 24 Hour Access">
+          <img class="button-icons" src="/lock-open.png" loading="lazy" alt="Unlock icon">
           <span class="button-text-wrapper">
             <span class="button-text">TRY FREE - 24H ACCESS</span>
             <span class="button-text hover-text">TRY FREE - 24H ACCESS</span>
           </span>
         </button>
-        <button (click)="scrollToSection('section1')">
-          <img class="button-icons" src="/start-video.png">
+        <button (click)="scrollToSection('section1')" aria-label="Start Streaming Now">
+          <img class="button-icons" src="/start-video.png" loading="lazy" alt="Play icon">
           <span class="button-text-wrapper">
             <span class="button-text">START STREAMING NOW!</span>
             <span class="button-text hover-text">START STREAMING NOW!</span>
           </span>
         </button>
       </div>
-      <p >Start your FREE 24-hour trial – No credit card. No risk. </p>
+      <p>Start your FREE 24-hour trial – No credit card. No risk.</p>
     </div>
-    <div class="screen-photo">
-      <img src="/save money with BINGEBEAR IPTV SERVICE.png" alt="screen photo">
-    </div>
+    <figure class="screen-photo" itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+      <img src="/save money with BINGEBEAR IPTV SERVICE.png" alt="screen photo" loading="lazy">
+    </figure>
   </section>
+
+  <!-- MOVIE SWIPER -->
   <section class="movie-swiper-section">
-    <div class="movie-swiper-container">
+    <figure class="movie-swiper-container">
       <swiper-container 
         #swiper 
-        init="false" 
+        init="false"
+        loop="true" 
         autoplay="true" 
-        slides-per-view="5" 
+        slides-per-view="auto"
         slides-per-group="5" 
         speed="1000" 
-        loop="true"
-        pause-on-mouse-enter="true">
-    
-        <swiper-slide *ngFor="let img of imageList">
+        pause-on-mouse-enter="true"
+        breakpoints='{
+          "320": {"slidesPerView": 2 },
+          "480": {"slidesPerView": 2 },
+          "768": {"slidesPerView": 3},
+          "1024": {"slidesPerView": 5},
+          "1600": {"slidesPerView": 5}
+        }'>
+        <swiper-slide *ngFor="let img of imageList" itemscope itemtype="https://schema.org/Movie">
           <img [src]="img" alt="Movie poster" loading="lazy">
         </swiper-slide>
-    
       </swiper-container>
-    </div>
+    </figure>
   </section>
   
-  
+  <!-- INFO SECTION -->
   <section class="info-section">
-    <div class="info-box">
-      <img class="button-icons" src="/optimized.png" alt="AI-Optimized icon">
-      <h1>AI-Optimized</h1>
-      <p>Buffer-free, personalized streaming.</p>
-    </div>
-    <div class="info-box">
-      <img class="button-icons" src="/secured payment.png" alt="Secured Payment methods icon">
-      <h1>Secured Payment Methods</h1>
-      <p>Safeguard your data with encrypted access.</p>
-    </div>
-    <div class="info-box">
-      <img class="button-icons" src="/anonyme.png" alt="VPN Protection icon">
-      <h1>VPN Protection</h1>
-      <p>Safeguard your data with encrypted access.</p>
-    </div>
-    <div class="info-box">
-      <img class="button-icons" src="/browse.png" alt="Worldwide Channels icon">
-      <h1>Worldwide Channels</h1>
-      <p>Access Irish, US, UK, CA & more.</p>
-    </div>
-    <div class="info-box">
-      <img class="button-icons" src="/bouton-de-lecture-rond.png" alt="On-Demand Content icon">
-      <h1>On-Demand Content</h1>
-      <p>Binge from a huge updated content library anytime.</p>
-    </div>
-    <div class="info-box">
-      <img class="button-icons" src="/4k.png" alt="4K & HD Quality icon">
-      <h1>4K & HD Quality</h1>
-      <p>Crystal-clear live channels and on-demand shows.</p>
-    </div>
+    <article class="info-box" itemscope itemtype="https://schema.org/Service">
+      <img class="button-icons" src="/optimized.png" alt="AI-Optimized icon" loading="lazy">
+      <h1 itemprop="name">AI-Optimized</h1>
+      <p itemprop="description">Buffer-free, personalized streaming.</p>
+    </article>
+    <article class="info-box" itemscope itemtype="https://schema.org/Service">
+      <img class="button-icons" src="/secured payment.png" alt="Secured Payment methods icon" loading="lazy">
+      <h1 itemprop="name">Secured Payment Methods</h1>
+      <p itemprop="description">Safeguard your data with encrypted access.</p>
+    </article>
+    <article class="info-box" itemscope itemtype="https://schema.org/Service">
+      <img class="button-icons" src="/anonyme.png" alt="VPN Protection icon" loading="lazy">
+      <h1 itemprop="name">VPN Protection</h1>
+      <p itemprop="description">Safeguard your data with encrypted access.</p>
+    </article>
+    <article class="info-box" itemscope itemtype="https://schema.org/Service">
+      <img class="button-icons" src="/browse.png" alt="Worldwide Channels icon" loading="lazy">
+      <h1 itemprop="name">Worldwide Channels</h1>
+      <p itemprop="description">Access Irish, US, UK, CA & more.</p>
+    </article>
+    <article class="info-box" itemscope itemtype="https://schema.org/Service">
+      <img class="button-icons" src="/bouton-de-lecture-rond.png" alt="On-Demand Content icon" loading="lazy">
+      <h1 itemprop="name">On-Demand Content</h1>
+      <p itemprop="description">Binge from a huge updated content library anytime.</p>
+    </article>
+    <article class="info-box" itemscope itemtype="https://schema.org/Service">
+      <img class="button-icons" src="/4k.png" alt="4K & HD Quality icon" loading="lazy">
+      <h1 itemprop="name">4K & HD Quality</h1>
+      <p itemprop="description">Crystal-clear live channels and on-demand shows.</p>
+    </article>
   </section>
-  <section class="Channel main-channel">
+
+  <!-- CHANNEL MAIN CHANNEL -->
+
+   <!-- CHANNEL MAIN CHANNEL -->
+   <section class="Channel main-channel" itemscope itemtype="https://schema.org/Service">
     <div class="channels-container main-container">
-      <div class="image-section main-image-section">
-        <img src="/movies-photo.png" alt="Streaming Channels">
+      <figure class="image-section main-image-section">
+        <img src="/movies-photo.png" alt="Streaming Channels" loading="lazy">
         <div class="data-box">
           <div class="data-holder">
             <div class="info-unit">
@@ -123,9 +139,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </figure>
       <div class="subscription-text">
-        <div class="scrolling-text-container">
+        <figure class="scrolling-text-container">
           <div class="highlight-zone"></div>
           <div class="scrolling-text">
             <span>Disney Plus</span>
@@ -140,187 +156,211 @@
             <span>All Services..</span>
             <span>Netflix</span>
             <span>Prime Video</span>
-            
           </div>
-        </div>
+        </figure>
         <div class="content">
           <p>Stream All Your Favorites: Disney+, Hulu, Sling TV, and More!</p>
-  
           <div class="action-group">
-            <button class="manage-subscription" (click)="scrollToSection('section2')">
-              <img src="/start-video.png" alt="Play icon">
+            <button class="manage-subscription" (click)="scrollToSection('section2')" aria-label="Try Free 24 Hour Access">
+              <img src="/start-video.png" alt="Play icon" loading="lazy">
               <span class="button-text-wrapper">
                 <span class="button-text">TRY FREE – 24H ACCESS</span>
                 <span class="button-text hover-text">TRY FREE – 24H ACCESS</span>
               </span>
             </button>
-            <button class="manage-subscription"(click)="scrollToSection('section1')">
-              <img class="button-icons" src="/start-video.png">
+            <button class="manage-subscription"(click)="scrollToSection('section1')" aria-label="Manage Subscription">
+              <img class="button-icons" src="/start-video.png" loading="lazy" alt="Play icon">
               <span class="button-text-wrapper">
                 <span class="button-text">MANAGE SUBSCRIPTION</span>
                 <span class="button-text hover-text">MANAGE SUBSCRIPTION</span>
               </span>
             </button>
           </div>
-  
           <p class="trial-info">Start Your FREE 24-Hour Trial – No Credit Card. No Risk.</p>
         </div>
       </div>
     </div>
-  
   </section>
 
+
+  <!-- CONTENT SECTION -->
   <section class="content-section">
-    <div class="animated-text">
-      <h3>What You’re Thinking (And Why You’re Wrong)      </h3>
-      <p>"It’s too expensive."<br>
+    <article class="animated-text" itemscope itemtype="https://schema.org/Question">
+      <h3 itemprop="name">What You're Thinking (And Why You're Wrong)</h3>
+      <p itemprop="acceptedAnswer">"It's too expensive."<br>
         "Will I really get what I paid for?"<br>
         "I can find cheaper services."<br>
-        Here’s the deal: If you're only comparing price, you're making a huge mistake.</p>
-    </div>
+        Here's the deal: If you're only comparing price, you're making a huge mistake.</p>
+    </article>
 
-    <div class="animated-text">
-      <h3>Why We're Different:    </h3>
-      <p>When you go cheap, you get cheap service. We’re not here for that. You’re investing in premium quality, top-tier support, and a smooth experience..</p>
-    </div>
+    <article class="animated-text" itemscope itemtype="https://schema.org/Question">
+      <h3 itemprop="name">Why We're Different:</h3>
+      <p itemprop="acceptedAnswer">When you go cheap, you get cheap service. We're not here for that. You're investing in premium quality, top-tier support, and a smooth experience.</p>
+    </article>
 
-    <div class="animated-text">
-      <h3>Instant Setup – No Hassles, No Delays.      </h3>
-      <p>We want to earn your trust, not just your money. If you’re signing up, it’s because you want the best—no compromises.
-      </p>
-    </div>
+    <article class="animated-text" itemscope itemtype="https://schema.org/Question">
+      <h3 itemprop="name">Instant Setup – No Hassles, No Delays.</h3>
+      <p itemprop="acceptedAnswer">We want to earn your trust, not just your money. If you're signing up, it's because you want the best—no compromises.</p>
+    </article>
 
-    <div class="animated-text">
-      <h3>We Don’t Sell Crap:      </h3>
-      <p>Others might be cheaper, but they come with buffering, poor quality, and zero customer support. That’s not us. We’re here for a premium experience.      </p>
-    </div>
+    <article class="animated-text" itemscope itemtype="https://schema.org/Question">
+      <h3 itemprop="name">We Don't Sell Crap:</h3>
+      <p itemprop="acceptedAnswer">Others might be cheaper, but they come with buffering, poor quality, and zero customer support. That's not us. We're here for a premium experience.</p>
+    </article>
 
-    <div class="animated-text">
-      <h3>💸 Out of Budget? We've Got You Covered! 💸      </h3>
-      <p>Struggling to make ends meet? We get it. Pay just €25 today, and we’ll activate your full IPTV plan for 12 months. No limits, no hidden fees—everything’s included. Once you're back on your feet, pay the rest within 3 weeks. Simple as that. No late fees, no stress—just pure value.
-      </p>
-    </div>
-    
+    <article class="animated-text" itemscope itemtype="https://schema.org/Question">
+      <h3 itemprop="name">💸 Out of Budget? We've Got You Covered! 💸</h3>
+      <p itemprop="acceptedAnswer">Struggling to make ends meet? We get it. Pay just €25 today, and we'll activate your full IPTV plan for 12 months. No limits, no hidden fees—everything's included. Once you're back on your feet, pay the rest within 3 weeks. Simple as that. No late fees, no stress—just pure value.</p>
+    </article>
   </section>
-  
-  <section class="Channel secondary-channel">
-    <div class="channels-container secondary-container">
-      <div class="image-section secondary-image-section">
-        <img src="/Untitled design.png" alt="Channels Design">
-      </div>
-      <div class="subscription-text">
-        <div class="scrolling-text-container">
-          <div class="highlight-zone"></div>
-          <div class="scrolling-text">
-            <span>Peacock</span>
-            <span>Max</span>
-            <span>Disney Plus</span>
-            <span>Netflix</span>
-            <span>Prime</span>
-            <span>Hulu</span>
-            <!-- Text repeats for seamless scrolling -->
-            <span>Peacock</span>
-            <span>Max</span>
-            <span>Disney Plus</span>
-            <span>Netflix</span>
-            <span>Prime</span>
-            <span>Hulu</span>
-          </div>
-        </div>
-        <div class="content">
-          <p>Experience the best in sports, news, and entertainment with our AI-powered IPTV</p>
 
-          <div class="revolut-subscription-button-container">
-            <button class="revolut-subscription-button" (click)="scrollToSection('section1')">
-              <span class="button-text-wrapper">
-                <span class="button-text">Manage Subscription</span>
-                <span class="button-text hover-text">Manage Subscription</span>
-              </span>
-            </button>
-            <span class="offer">40% OFF + Extra Free Months</span>
+
+    <!-- CHANNEL SECONDARY -->
+    <section class="Channel secondary-channel" itemscope itemtype="https://schema.org/Service">
+      <div class="channels-container secondary-container">
+        <figure class="image-section secondary-image-section">
+          <img src="/Untitled design.png" alt="Channels Design" loading="lazy">
+        </figure>
+        <article class="subscription-text">
+          <figure class="scrolling-text-container">
+            <div class="highlight-zone"></div>
+            <div class="scrolling-text">
+              <span>Peacock</span>
+              <span>Max</span>
+              <span>Disney Plus</span>
+              <span>Netflix</span>
+              <span>Prime</span>
+              <span>Hulu</span>
+              <span>Peacock</span>
+              <span>Max</span>
+              <span>Disney Plus</span>
+              <span>Netflix</span>
+              <span>Prime</span>
+              <span>Hulu</span>
+            </div>
+          </figure>
+          <div class="content">
+            <p>Experience the best in sports, news, and entertainment with our AI-powered IPTV</p>
+            <div class="revolut-subscription-button-container">
+              <button class="revolut-subscription-button" (click)="scrollToSection('section1')" aria-label="Manage Subscription">
+                <span class="button-text-wrapper">
+                  <span class="button-text">Manage Subscription</span>
+                  <span class="button-text hover-text">Manage Subscription</span>
+                </span>
+              </button>
+              <span class="offer">40% OFF + Extra Free Months</span>
+            </div>
           </div>
-        </div>
+        </article>
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- DEVICE SECTION -->
   <section class="device-section">
     <section class="device-type">
-      <div class="button-toggle">
-        <button [class.active]="selectedDevice === 'apple'" (click)="selectDevice('apple')">
+      <div class="button-toggle" role="tablist">
+        <button [class.active]="selectedDevice === 'apple'" 
+                (click)="selectDevice('apple')"
+                role="tab"
+                aria-selected="false"
+                aria-controls="apple-content">
           Apple Device
         </button>
-        <button [class.active]="selectedDevice === 'other'" (click)="selectDevice('other')">
+        <button [class.active]="selectedDevice === 'other'" 
+                (click)="selectDevice('other')"
+                role="tab"
+                aria-selected="false"
+                aria-controls="other-content">
           All Other Devices
         </button>
       </div>
     
-    <!-- Apple Content -->
-    <div class="device-content" *ngIf="selectedDevice === 'apple'">
-      <div class="text-container">
-        <p class="update-text">Apple Setup</p>
-        <h1>Seamless Setup on <br>Apple Devices</h1>
-        <p>Instantly connect your Apple TV, iPhone, or iPad. Enjoy 13,000+ live channels, movies, and shows in crisp 4K,
-          all powered by AI.</p>
-        <div class="button-container">
-          <button (click)="scrollToSection('section2')">
-            <img class="button-icons" src="/lock-open.png">
-            <span class="button-text-wrapper">
-              <span class="button-text">TRY FREE - 24H ACCESS</span>
-              <span class="button-text hover-text">TRY FREE - 24H ACCESS</span>
-            </span>
-          </button>
-        </div>
-        <img class="trustpilot-image" src="/trustpilot web file converted.png" alt="Trustpilot logo">
-      </div>
-      <div class="image-container">
-        <img src="/apple-setup-image.png">
-      </div>
-    </div>
-
-    <!-- Other Devices Content -->
-    <div class="device-content" *ngIf="selectedDevice === 'other'">
-      <div class="text-container">
-        <p class="update-text">Universal Setup</p>
-        <h1>Automatic Setup on <br>Any Devices</h1>
-        <p>Works on Android, Firestick, Roku, Windows, and more—just install the app. Our friendly support will have you
-          streaming in minutes, hassle-free.</p>
-        <div class="button-container">
-          <button (click)="scrollToSection('section2')">
-            <img class="button-icons" src="/lock-open.png">
-            <span class="button-text-wrapper">
-              <span class="button-text">TRY FREE - 24H ACCESS</span>
-              <span class="button-text hover-text">TRY FREE - 24H ACCESS</span>
-            </span>
-          </button>
+      <!-- Apple Content -->
+      <article class="device-content" 
+               *ngIf="selectedDevice === 'apple'"
+               id="apple-content"
+               role="tabpanel"
+               aria-labelledby="apple-tab">
+        <div class="text-container">
+          <p class="update-text">Apple Setup</p>
+          <h1>Seamless Setup on <br>Apple Devices</h1>
+          <p>Instantly connect your Apple TV, iPhone, or iPad. Enjoy 13,000+ live channels, movies, and shows in crisp 4K, all powered by AI.</p>
+          <div class="button-container">
+            <button (click)="scrollToSection('section2')" aria-label="Try Free on Apple Devices">
+              <img class="button-icons" src="/lock-open.png" loading="lazy" alt="Unlock icon">
+              <span class="button-text-wrapper">
+                <span class="button-text">TRY FREE - 24H ACCESS</span>
+                <span class="button-text hover-text">TRY FREE - 24H ACCESS</span>
+              </span>
+            </button>
           </div>
-        <img class="trustpilot-image" src="/trustpilot web file converted.png" alt="Trustpilot logo">
-      </div>
-      <div class="image-container">
-        <img src="/other-devices-photo.png">
-      </div>
-    </div>
-  </section>
-  </section>
+          <img class="trustpilot-image" src="/trustpilot web file converted.png" loading="lazy" alt="Trustpilot logo">
+        </div>
+        <figure class="image-container">
+          <img src="/apple-setup-image.png" loading="lazy" alt="Apple TV Setup">
+        </figure>
+      </article>
+
+       <!-- Other Devices Content -->
+       <article class="device-content" 
+       *ngIf="selectedDevice === 'other'"
+       id="other-content"
+       role="tabpanel"
+       aria-labelledby="other-tab">
+<div class="text-container">
+  <p class="update-text">Universal Setup</p>
+  <h1>Automatic Setup on <br>Any Devices</h1>
+  <p>Works on Android, Firestick, Roku, Windows, and more—just install the app. Our friendly support will have you streaming in minutes, hassle-free.</p>
+  <div class="button-container">
+    <button (click)="scrollToSection('section2')" aria-label="Try Free on All Devices">
+      <img class="button-icons" src="/lock-open.png" loading="lazy" alt="Unlock icon">
+      <span class="button-text-wrapper">
+        <span class="button-text">TRY FREE - 24H ACCESS</span>
+        <span class="button-text hover-text">TRY FREE - 24H ACCESS</span>
+      </span>
+    </button>
+  </div>
+  <img class="trustpilot-image" src="/trustpilot web file converted.png" loading="lazy" alt="Trustpilot logo">
+</div>
+<figure class="image-container">
+  <img src="/other-devices-photo.png" loading="lazy" alt="Android and Firestick Setup">
+</figure>
+</article>
+</section>
+</section>
+
   
-  <section class="pricing-container" id="section1">
+   <!-- PRICING SECTION -->
+   <section class="pricing-container" id="section1" itemscope itemtype="https://schema.org/Product">
     <div class="pricing-title">
-      <h1>Manage<br>
-        <span> Subscription</span>
-      </h1>
-      <p>Pick the plan that fits your streaming needs.</p>
+      <h1 itemprop="name">Manage<br><span>Subscription</span></h1>
+      <p itemprop="description">Pick the plan that fits your streaming needs.</p>
     </div>
 
-    <div class="button-toggle">
-      <button [class.active]="selectedPlanType === 'individual'" (click)="selectPlanType('individual')">
+    <div class="button-toggle" role="tablist">
+      <button [class.active]="selectedPlanType === 'individual'" 
+              (click)="selectPlanType('individual')"
+              role="tab"
+              aria-selected="true"
+              aria-controls="individual-plans">
         Individual
       </button>
-      <button [class.active]="selectedPlanType === 'family'" (click)="selectPlanType('family')">
+      <button [class.active]="selectedPlanType === 'family'" 
+              (click)="selectPlanType('family')"
+              role="tab"
+              aria-selected="false"
+              aria-controls="family-plans">
         Family - Save 40%
       </button>
     </div>
 
     <div class="plans-container">
-      <div *ngFor="let plan of plans" class="plan-card" [class.popular]="plan.isPopular">
+      <article *ngFor="let plan of plans" 
+      class="plan-card" 
+      [class.popular]="plan.isPopular"
+      itemprop="offers" 
+      itemscope 
+      itemtype="https://schema.org/Offer">
         <div class="discount">{{ plan.discountText }}</div>
         <div class="plan-header">
           <h3>{{ plan.title }}</h3>
@@ -342,54 +382,55 @@
 
         <button class="cta-button">
           <span class="cta-text" [routerLink]="['/checkout']">{{ plan.ctaText }}</span>
-
         </button>
-      </div>
+      </article>
     </div>
 
     <div class="pricing-footer">
-      <p> <img src="information-button.png" alt="info icon">No hidden fees. Cancel anytime.</p>
-      <div class="payment-photos">
-        <img src="/Revolut.png" alt="Revolut">
-        <img src="paypal.png" alt="Paypal">
-        <img src="/USDT.png" alt="USDT Transfert">
-        <img src="/western.png" alt="WesternUnion">
-      </div>
+      <p><img src="information-button.png" loading="lazy" alt="info icon">No hidden fees. Cancel anytime.</p>
+      <figure class="payment-photos">
+        <img src="/Revolut.png" loading="lazy" alt="Revolut">
+        <img src="paypal.png" loading="lazy" alt="Paypal">
+        <img src="/USDT.png" loading="lazy" alt="USDT Transfert">
+        <img src="/western.png" loading="lazy" alt="WesternUnion">
+      </figure>
     </div>
   </section>
-  <section class="Access-contact" id="section2">
+
+  <section class="Access-contact" id="section2" itemscope itemtype="https://schema.org/ContactPage">
     <div class="custom-device-content">
       <div class="custom-text-container">
-        <h3>Unlock Your FREE 24-Hour <br>Trial Now! </h3>
-        <p class="custom-text-description">No Credit Card. No Hassle. Just Premium Content.</p>
-        <div class="steps-container">
+        <h3 itemprop="headline">Unlock Your FREE 24-Hour <br>Trial Now!</h3>
+        <p class="custom-text-description" itemprop="description">No Credit Card. No Hassle. Just Premium Content.</p>
+        <div class="steps-container" itemscope itemtype="https://schema.org/ItemList">
           <div class="timeline"></div>
-          <div *ngFor="let step of steps" class="step-item">
-            <div class="step-number">{{ step.number }}</div>
+          <div *ngFor="let step of steps" class="step-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/HowToStep">
+            <div class="step-number" itemprop="position" [attr.content]="step.number">{{ step.number }}</div>
             <div class="step-content">
-              <h3>{{ step.title }}</h3>
-              <p>{{ step.description }}</p>
+              <h3 itemprop="name">{{ step.title }}</h3>
+              <p itemprop="text">{{ step.description }}</p>
             </div>
           </div>
         </div>  
       </div>
-      <div class="custom-filling-contact">
-        <form class="custom-form" (ngSubmit)="submitForm()">
+      <div class="custom-filling-contact" itemprop="potentialAction" itemscope itemtype="https://schema.org/SubscribeAction">
+        <form class="custom-form" (ngSubmit)="submitForm()" itemprop="target" itemscope itemtype="https://schema.org/EntryPoint">
+          <meta itemprop="url" content="https://yourdomain.com/subscribe">
           <div class="custom-form-wrapper">
             <div class="custom-input-container">
               <div class="custom-input-block">
                 <label for="email">Email Address</label>
                 <input class="custom-input" id="email" [(ngModel)]="form.email" name="email"
-                  placeholder="Your Email Address" required>
+                  placeholder="Your Email Address" required itemprop="email">
               </div>
               <div class="custom-input-block">
                 <label for="phone">WhatsApp Number</label>
                 <input class="custom-input" id="phone" [(ngModel)]="form.phone" name="phone"
-                  placeholder="Enter Whatsapp Number (+353)" required>
+                  placeholder="Enter Whatsapp Number (+353)" required itemprop="telephone">
               </div>
             </div>
             <div class="custom-submit-block">
-              <button class="custom-submit" type="submit">UNLOCK FREE 24H TRIAL</button>
+              <button class="custom-submit" type="submit" itemprop="name">UNLOCK FREE 24H TRIAL</button>
             </div>
           </div>
         </form>
@@ -397,15 +438,17 @@
     </div>
   </section>
 
-  <section class="revolut-subscription-section">
-    <div class="revolut-subscription-content">
+  <!-- REVOLUT SUBSCRIPTION -->
+  <section class="revolut-subscription-section" itemscope itemtype="https://schema.org/PaymentService">
+    <article class="revolut-subscription-content">
       <div class="revolut-subscription-text-container">
-        <img class="revolut-subscription-icon" src="/Untitled design (50).png" alt="Subscription Icon">
-        <h1>Pay Safely🤑</h1>
-        <p>No hidden fees, no hassle—just quick, secure transfers.<br> It's the easiest way to pay for your
-          subscription.</p>
+        <figure class="revolut-subscription-icon">
+          <img src="/Untitled design (50).png" loading="lazy" alt="Subscription Icon">
+        </figure>
+        <h1 itemprop="name">Pay Safely🤑</h1>
+        <p itemprop="description">No hidden fees, no hassle—just quick, secure transfers.<br> It's the easiest way to pay for your subscription.</p>
         <div class="revolut-subscription-button-container">
-          <button class="revolut-subscription-button" (click)="scrollToSection('section1')">
+          <button class="revolut-subscription-button" (click)="scrollToSection('section1')" aria-label="Manage Payment Subscription">
             <span class="button-text-wrapper">
               <span class="button-text">Manage Subscription</span>
               <span class="button-text hover-text">Manage Subscription</span>
@@ -414,19 +457,21 @@
           <p class="revolut-subscription-tagline">Safe & Trusted</p>
         </div>
       </div>
-      <div class="revolut-subscription-image-container">
-        <img src="/Revolut-phone.png" alt="Subscription Phone">
-      </div>
-    </div>
+      <figure class="revolut-subscription-image-container">
+        <img src="/Revolut-phone.png" loading="lazy" alt="Subscription Phone">
+      </figure>
+    </article>
   </section>
+
+  <!-- ACCODIONS -->
   <section class="Accodions">
-    <div class="Accodions-header">
+    <header class="Accodions-header">
       <h3>5 Stars Customer • Support</h3>
       <h1>Frequently Asked Questions (FAQ)</h1>
-    </div>
+    </header>
     <div class="accordion">
       <!-- Accordion Item 1 -->
-      <div class="accordion-item" [class.active]="isOpen1">
+      <article class="accordion-item" [class.active]="isOpen1">
         <button class="accordion-header" (click)="isOpen1 = !isOpen1">
           BingeBear - The Feature of IPTV
           <span class="icon">{{ isOpen1 ? '-' : '+' }}</span>
@@ -474,11 +519,11 @@
             without any geo-restrictions. Watch best IPTV anywhere with the best IPTV provider.
           </p>
         </div>
-      </div>
+      </article>
       <hr>
 
       <!-- Accordion Item 2 -->
-      <div class="accordion-item" [class.active]="isOpen2">
+      <article class="accordion-item" [class.active]="isOpen2">
 
         <button class="accordion-header" (click)="isOpen2 = !isOpen2">
           How Does IPTV Work?
@@ -515,11 +560,11 @@
             better.
           </p>
         </div>
-      </div>
+      </article>
       <hr>
 
       <!-- Accordion Item 3 -->
-      <div class="accordion-item" [class.active]="isOpen3">
+      <article class="accordion-item" [class.active]="isOpen3">
         <button class="accordion-header" (click)="isOpen3 = !isOpen3">
           Pricing: The Best Deal For Your IPTV Needs
           <span class="icon">{{ isOpen3 ? '-' : '+' }}</span>
@@ -545,11 +590,11 @@
           <a>Grab your IPTV subscription now </a>
           <p>and start watching with no limits. Get the best IPTV service-fast, reliable, and no BS.</p>
         </div>
-      </div>
+      </article>
       <hr>
 
       <!-- Accordion Item 4 -->
-      <div class="accordion-item" [class.active]="isOpen4">
+      <article class="accordion-item" [class.active]="isOpen4">
         <button class="accordion-header" (click)="isOpen4 = !isOpen4">
           Do you offer a free trial?
           <span class="icon">{{ isOpen4 ? '-' : '+' }}</span>
@@ -578,11 +623,11 @@
             Enjoy your free trial today!
           </p>
         </div>
-      </div>
+      </article>
       <hr>
 
       <!-- Accordion Item 5 -->
-      <div class="accordion-item" [class.active]="isOpen5">
+      <article class="accordion-item" [class.active]="isOpen5">
         <button class="accordion-header" (click)="isOpen5 = !isOpen5">
           Are there any hidden fees?
           <span class="icon">{{ isOpen5 ? '-' : '+' }}</span>
@@ -598,11 +643,11 @@
             worry-free streaming experience every time.
           </p>
         </div>
-      </div>
+      </article>
       <hr>
 
       <!-- Accordion Item 6 -->
-      <div class="accordion-item" [class.active]="isOpen6">
+      <article class="accordion-item" [class.active]="isOpen6">
         <button class="accordion-header" (click)="isOpen6 = !isOpen6">
           Compatibility & Devices - Stream Anytime, Anywhere
           <span class="icon">{{ isOpen6 ? '-' : '+' }}</span>
@@ -631,11 +676,11 @@
             watching today on your preferred device!
           </p>
         </div>
-      </div>
+      </article>
       <hr>
 
       <!-- Accordion Item 7 -->
-      <div class="accordion-item" [class.active]="isOpen7">
+      <article class="accordion-item" [class.active]="isOpen7">
         <button class="accordion-header" (click)="isOpen7 = !isOpen7">
           How can I renew my IPTV subscription?
           <span class="icon">{{ isOpen7 ? '-' : '+' }}</span>
@@ -651,11 +696,11 @@
             feel free to cancel—the choice is yours.
           </p>
         </div>
-      </div>
+      </article>
       <hr>
 
       <!-- Accordion Item 8 -->
-      <div class="accordion-item" [class.active]="isOpen8">
+      <article class="accordion-item" [class.active]="isOpen8">
         <button class="accordion-header" (click)="isOpen8 = !isOpen8">
           Which app should I use for BingeBear IPTV?
           <span class="icon">{{ isOpen8 ? '-' : '+' }}</span>
@@ -685,11 +730,11 @@
             from your phone, smart TV, or set-top box, we've got you covered.
           </p>
         </div>
-      </div>
+      </article>
       <hr>
 
       <!-- Accordion Item 9 -->
-      <div class="accordion-item" [class.active]="isOpen9">
+      <article class="accordion-item" [class.active]="isOpen9">
         <button class="accordion-header" (click)="isOpen9 = !isOpen9">
           Do you provide Xtream Codes or M3U URL?
           <span class="icon">{{ isOpen9 ? '-' : '+' }}</span>
@@ -711,11 +756,11 @@
             Pro, or any other IPTV app you prefer, so you can start streaming without any hassle.
           </p>
         </div>
-      </div>
+      </article>
       <hr>
 
       <!-- Accordion Item 10 -->
-      <div class="accordion-item" [class.active]="isOpen10">
+      <article class="accordion-item" [class.active]="isOpen10">
         <button class="accordion-header" (click)="isOpen10 = !isOpen10">
           Can I use one account on multiple devices?
           <span class="icon">{{ isOpen10 ? '-' : '+' }}</span>
@@ -740,11 +785,11 @@
             This way, you can customize your plan to match your viewing needs!
           </p>
         </div>
-      </div>
+      </article>
       <hr>
 
       <!-- Accordion Item 11 -->
-      <div class="accordion-item" [class.active]="isOpen11">
+      <article class="accordion-item" [class.active]="isOpen11">
         <button class="accordion-header" (click)="isOpen11 = !isOpen11">
           What is your refund policy?
           <span class="icon">{{ isOpen11 ? '-' : '+' }}</span>
@@ -760,11 +805,11 @@
             deserve.
           </p>
         </div>
-      </div>
+      </article>
       <hr>
 
       <!-- Accordion Item 12 -->
-      <div class="accordion-item" [class.active]="isOpen12">
+      <article class="accordion-item" [class.active]="isOpen12">
         <button class="accordion-header" (click)="isOpen12 = !isOpen12">
           What is the EPG Program Guide?
           <span class="icon">{{ isOpen12 ? '-' : '+' }}</span>
@@ -784,11 +829,11 @@
             It's like your old TV guide—but <strong>smarter.</strong>
           </p>
         </div>
-      </div>
+      </article>
       <hr>
 
       <!-- Accordion Item 13 -->
-      <div class="accordion-item" [class.active]="isOpen13">
+      <article class="accordion-item" [class.active]="isOpen13">
         <button class="accordion-header" (click)="isOpen13 = !isOpen13">
           What is the Catch-Up Feature?
           <span class="icon">{{ isOpen13 ? '-' : '+' }}</span>
@@ -810,11 +855,11 @@
             Never miss a moment again.
           </p>
         </div>
-      </div>
+      </article>
       <hr>
 
       <!-- Accordion Item 14 -->
-      <div class="accordion-item" [class.active]="isOpen14">
+      <article class="accordion-item" [class.active]="isOpen14">
         <button class="accordion-header" (click)="isOpen14 = !isOpen14">
           What customer support options are available?
           <span class="icon">{{ isOpen14 ? '-' : '+' }}</span>
@@ -826,11 +871,11 @@
             issues, we've got you covered <strong>anytime, anywhere.</strong>
           </p>
         </div>
-      </div>
+      </article>
       <hr>
 
       <!-- Accordion Item 15 -->
-      <div class="accordion-item" [class.active]="isOpen15">
+      <article class="accordion-item" [class.active]="isOpen15">
         <button class="accordion-header" (click)="isOpen15 = !isOpen15">
           How can I contact customer support?
           <span class="icon">{{ isOpen14 ? '-' : '+' }}</span>
@@ -849,11 +894,11 @@
           <br>
           <p><strong>that's why 20 agents it's ready to support you 24/7</strong></p>
         </div>
-      </div>
+      </article>
       <hr>
 
       <!-- Accordion Item 16 -->
-      <div class="accordion-item" [class.active]="isOpen16">
+      <article class="accordion-item" [class.active]="isOpen16">
         <button class="accordion-header" (click)="isOpen16 = !isOpen16">
           WHY BINGEBEAR IPTV IS #1
           <span class="icon">{{ isOpen16 ? '-' : '+' }}</span>
@@ -883,7 +928,7 @@
             <strong>Claim your subscription now—exclusive private servers, act fast!</strong>
           </p>
         </div>
-      </div>
+      </article>
       <hr>
     </div>
   </section>
@@ -898,162 +943,176 @@
     <h1>Happy Client Experiences</h1>
     <div class="testimonial-grid">
       <!-- Testimonial 1 -->
-      <div class="testimonial">
-        <p class="comment">
+      <article class="testimonial" 
+      itemprop="review" 
+      itemscope 
+      itemtype="https://schema.org/Review">
+              <p class="comment" itemprop="reviewBody">
           Just got this IPTV last week & so far so good, was worried about buffering but none so far. I'm well
           impressed,
           cheers!
         </p>
-        <div class="rating">
-          ★ ★ ★ ★ ★
+        <div class="rating" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+          ★ ★ ★ ★ ★ <meta itemprop="ratingValue" content="5">
         </div>
-        <p class="client">
-          Sean M</p>
-        <span class="location">Ireland</span>
-
-      </div>
+        <p class="client" itemprop="author">Sean M</p>
+        <span class="location" itemprop="location">Ireland</span>
+        </article>
 
       <!-- Testimonial 2 -->
-      <div class="testimonial">
-        <p class="comment">
-          Channel selection is savage, I was a bit lost at first but got the hang of it quick. Won't be leaving the
+      <article class="testimonial" 
+      itemprop="review" 
+      itemscope 
+      itemtype="https://schema.org/Review">
+        <p class="comment" itemprop="reviewBody">
+    Channel selection is savage, I was a bit lost at first but got the hang of it quick. Won't be leaving the
           couch
           any time soon, haha!
         </p>
-        <div class="rating">
-          ★ ★ ★ ★ ★
+        <div class="rating" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+          ★ ★ ★ ★ ★ <meta itemprop="ratingValue" content="5">
         </div>
-        <p class="client">
+        <p class="client" itemprop="author">
           Conor B</p>
-        <span class="location">Ireland</span>
+        <span class="location" itemprop="location">Ireland</span>
 
-      </div>
+        </article>
 
       <!-- Testimonial 3 -->
-      <div class="testimonial">
-        <p class="comment">
-          Fed up paying Sky a fortune, tried this & sure I won't be going back. Everything I watch plus loads more, no
+      <article class="testimonial" 
+      itemprop="review" 
+      itemscope 
+      itemtype="https://schema.org/Review">
+      <p class="comment" itemprop="reviewBody">
+        Fed up paying Sky a fortune, tried this & sure I won't be going back. Everything I watch plus loads more, no
           regrets!
         </p>
-        <div class="rating">
-          ★ ★ ★ ★ ★
+        <div class="rating" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+          ★ ★ ★ ★ ★ <meta itemprop="ratingValue" content="5">
         </div>
-        <p class="client">
+        <p class="client" itemprop="author">
           Mick O</p>
-        <span class="location">Ireland</span>
+        <span class="location" itemprop="location">Ireland</span>
 
-      </div>
+        </article>
       <!-- Testimonial 4 -->
-      <div class="testimonial">
-        <p class="comment">
+      <article class="testimonial" 
+      itemprop="review" 
+      itemscope 
+      itemtype="https://schema.org/Review">     
+         <p class="comment" itemprop="reviewBody">
           im no tech wiz but setup was dead easy, took about 5 mins & i was off watchin my shows, grand job
         </p>
-        <div class="rating">
-          ★ ★ ★ ★ ★
+        <div class="rating"  itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+          ★ ★ ★ ★ ★<meta itemprop="ratingValue" content="5">
         </div>
-        <p class="client">
+        <p class="client" itemprop="author">
           John Davies</p>
-        <span class="location">Ireland</span>
+        <span class="location" itemprop="location">Ireland</span>
 
-      </div>
+        </article>
 
       <!-- Testimonial 5 -->
-      <div class="testimonial">
-        <p class="comment">
+      <article class="testimonial" 
+      itemprop="review" 
+      itemscope 
+      itemtype="https://schema.org/Review"> 
+              <p class="comment" itemprop="reviewBody">
           my kids are mad for the cartoon channels, bless em, i finally get some peace in the evenings, happy days </p>
-        <div class="rating">
-          ★ ★ ★ ★ ★
+        <div class="rating"  itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+          ★ ★ ★ ★ ★<meta itemprop="ratingValue" content="5">
         </div>
-        <p class="client">
+        <p class="client" itemprop="author">
           Orla R</p>
-        <span class="location">Ireland</span>
+        <span class="location" itemprop="location">Ireland</span>
 
-      </div>
+        </article>
 
       <!-- Testimonial 6 -->
-      <div class="testimonial">
-        <p class="comment">
+      <article class="testimonial" 
+      itemprop="review" 
+      itemscope 
+      itemtype="https://schema.org/Review">
+              <p class="comment" itemprop="reviewBody">
           i can watch the gaa on my phone, never had better streaming so chuffed tbh, worth every penny </p>
-        <div class="rating">
-          ★ ★ ★ ★ ★
+        <div class="rating"  itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating">
+          ★ ★ ★ ★ ★<meta itemprop="ratingValue" content="5">
         </div>
-        <p class="client">
+        <p class="client" itemprop="author" >
           Joseph N</p>
-        <span class="location">Austra</span>
+        <span class="location" itemprop="location">Austra</span>
 
-      </div>
+        </article>
       <!-- Testimonial 7 -->
-      <div class="testimonial">
-        <p class="comment">
+      <article class="testimonial" 
+      itemprop="review" 
+      itemscope 
+      itemtype="https://schema.org/Review">     
+         <p class="comment" itemprop="reviewBody">
           the price is fair enough, i used to pay double for half the channels, definitely recommend givin it a lash if
           ya
           love sports </p>
-        <div class="rating">
-          ★ ★ ★ ★ ★
+        <div class="rating" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating" >
+          ★ ★ ★ ★ ★<meta itemprop="ratingValue" content="5">
         </div>
-        <p class="client">
+        <p class="client" itemprop="author">
           Clodagh M</p>
-        <span class="location">Ireland</span>
+        <span class="location" itemprop="location">Ireland</span>
 
-      </div>
+        </article>
 
       <!-- Testimonial 8 -->
-      <div class="testimonial">
-        <p class="comment">
+      <article class="testimonial" 
+      itemprop="review" 
+      itemscope 
+      itemtype="https://schema.org/Review">
+              <p class="comment" itemprop="reviewBody">
           honestly, i was a bit sceptical at first but it's turned out class. my husband watches footy all day and i'm
           hooked on the movies section, so we're both happy out</p>
-        <div class="rating">
-          ★ ★ ★ ★ ★
+        <div class="rating" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating" >
+          ★ ★ ★ ★ ★<meta itemprop="ratingValue" content="5">
         </div>
-        <p class="client">
+        <p class="client" itemprop="author">
           Paddy</p>
-        <span class="location">Ireland</span>
+        <span class="location" itemprop="location" >Ireland</span>
 
-      </div>
+        </article>
 
       <!-- Testimonial 9 -->
-      <div class="testimonial">
-        <p class="comment">
+      <article class="testimonial" 
+      itemprop="review" 
+      itemscope 
+      itemtype="https://schema.org/Review">        <p class="comment" itemprop="reviewBody">
           customer service is sound, i had a small issue with my account and they sorted it quick. real people who
           actually help ya, not some robot</p>
-        <div class="rating">
-          ★ ★ ★ ★ ★
+        <div class="rating" itemprop="reviewRating" itemscope itemtype="https://schema.org/Rating" >
+          ★ ★ ★ ★ ★<meta itemprop="ratingValue" content="5">
 
         </div>
-        <p class="client">
+        <p class="client" itemprop="author">
           Robert R</p>
-        <span class="location">Ireland</span>
+        <span class="location" itemprop="location">Ireland</span>
 
-      </div>
-          </div>
-  </section>
-  <footer class="footer">
-    <h2>Working With the Best in IPTV</h2>
-    <div class="container">
-      <swiper-container loop="true" space-between="30" slides-per-view="5" autoplay="true">
-        <swiper-slide>
-          <img src="1.png" alt="IPTV Partner Logo">
-        </swiper-slide>
-        <swiper-slide>
-          <img src="2.png" alt="IPTV Partner Logo">
-        </swiper-slide>
-        <swiper-slide>
-          <img src="3.png" alt="IPTV Partner Logo">
-        </swiper-slide>
-        <swiper-slide>
-          <img src="5.png" alt="IPTV Partner Logo">
-        </swiper-slide>
-        <swiper-slide>
-          <img src="6.png" alt="IPTV Partner Logo">
-        </swiper-slide>
-        <swiper-slide>
-          <img src="7.png" alt="IPTV Partner Logo">
-        </swiper-slide>
-      </swiper-container>
+        </article>
     </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" itemscope itemtype="https://schema.org/Organization">
+    <h2 itemprop="name">Working With the Best in IPTV</h2>
+    <figure class="container">
+      <swiper-container loop="true" space-between="30" slides-per-view="5" autoplay="true">
+        <swiper-slide><img src="1.png" loading="lazy" alt="IPTV Partner Logo"></swiper-slide>
+        <swiper-slide><img src="2.png" loading="lazy" alt="IPTV Partner Logo"></swiper-slide>
+        <swiper-slide><img src="3.png" loading="lazy" alt="IPTV Partner Logo"></swiper-slide>
+        <swiper-slide><img src="5.png" loading="lazy" alt="IPTV Partner Logo"></swiper-slide>
+        <swiper-slide><img src="6.png" loading="lazy" alt="IPTV Partner Logo"></swiper-slide>
+        <swiper-slide><img src="7.png" loading="lazy" alt="IPTV Partner Logo"></swiper-slide>
+      </swiper-container>
+    </figure>
     <hr>
     <section class="rights">
-      <p class="rights-texts">© 2025 BingeBearTV. All rights reserved.</p>
+      <p class="rights-texts">© 2025 <span itemprop="legalName">BingeBearTV</span>. All rights reserved.</p>
     </section>
   </footer>
 </section>

@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, HostListener, CUSTOM_ELEMENTS_SCHEMA, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { register } from 'swiper/element/bundle';
 import { HttpClient } from '@angular/common/http';
+import { PlanService } from '../../Services/PlanService';
 
 register();
 
@@ -51,7 +52,7 @@ export class HeroComponent implements OnInit {
 
 
   }
-  imageList: string[] = Array.from({ length: 48 }, (_, i) => `/swiper-movies/movie${i + 1}.jpg`);
+  imageList: string[] = Array.from({ length: 50 }, (_, i) => `/swiper-movies/movie${i + 1}.jpg`);
 
 
   @HostListener('window:scroll', ['$event'])
@@ -102,7 +103,13 @@ export class HeroComponent implements OnInit {
 
   submissionStatus: 'success' | 'error' | 'none' = 'none';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router: Router,  private planService: PlanService) {}
+
+  goToCheckout(selectedPlan: any) {
+    this.planService.setSelectedPlan(selectedPlan);
+    this.router.navigate(['/checkout']);
+  }
+
 
   submitForm() {
     this.http.post('http://localhost:8080/api/contact', this.form).subscribe(
@@ -227,9 +234,11 @@ export class HeroComponent implements OnInit {
     }
   ];
 
+
   get plans() {
     return this.allPlans.filter(plan => plan.planType === this.selectedPlanType);
   }
+  
 
   ngAfterViewInit() {
     this.setupHighlightEffect();
@@ -307,7 +316,6 @@ export class HeroComponent implements OnInit {
   private initializeSwiper() {
     const swiperElement = this.swiperEl.nativeElement;
     const params = {
-      loop: true,
       slidesPerView: 4,
       speed: 1000,
       autoplay: {
@@ -317,7 +325,6 @@ export class HeroComponent implements OnInit {
       }
     };
       
-      // Assign it to Swiper element
       Object.assign(swiperElement, params);
       swiperElement.initialize();
     }
