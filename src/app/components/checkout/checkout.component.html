@@ -9,15 +9,19 @@
 
   </nav>
 </header>
+
+<!-- Success Message Overlay -->
+<div class="success-overlay" *ngIf="submissionStatus === 'success'">
+  <div class="success-popup">
+    <h2>Order Submitted!</h2>
+    <p>Thank you for trusting us... our team will contact you as soon as possible, within 24 hours.</p>
+    <button class="ok-button" (click)="goToHome()">OK</button>
+  </div>
+</div>
+
 <div class="checkout-container">
   <div class="checkout-form-container">
-    <div class="success-message">
-      <span class="checkmark">✓</span>
-      <span class="message">"Best IPTV Deal: 14 Months for Just 99€! [LIMITED TIME]" has been added to your cart.</span>
-      <button class="checkout-btn">Checkout</button>
-    </div>
-
-    <form  [formGroup]="checkoutForm" >
+    <form  [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
       <div class="form-section">
         <h2>Customer information</h2>
         <div class="form-field full-width">
@@ -28,7 +32,7 @@
       </div>
       </div>
 
-      <div class="form-section">
+      <div class="form-section" >
         <h2>Billing details</h2>
         <div class="form-row">
           <div class="form-field">
@@ -82,11 +86,10 @@
           </div>
         </div>
       </div>
-
       <button type="submit" class="submit-button" [disabled]="checkoutForm.invalid || isSubmitting">
         {{ isSubmitting ? 'Processing...' : 'Complete Order' }}
       </button>
-        </form>
+    </form>
   </div>
 
   <div class="info-sidebar">

@@ -3,12 +3,14 @@ import { Component, OnInit, HostListener, CUSTOM_ELEMENTS_SCHEMA, AfterViewInit,
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { register } from 'swiper/element/bundle';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { PlanService } from '../../Services/PlanService';
+import { FreeTrialService, FreeTrialResponse } from '../../Services/free-trial.service';
 
 register();
 
 interface PricingPlan {
+  id:number,
   title: string;
   discountText: string;
   price: string;
@@ -97,13 +99,30 @@ export class HeroComponent implements OnInit {
     this.selectedDevice = device;
   }
   form = {
+    firstname: '',
     email: '',
     phone: '',
   };
 
   submissionStatus: 'success' | 'error' | 'none' = 'none';
 
-  constructor(private http: HttpClient,private router: Router,  private planService: PlanService) {}
+  // --- Free Trial Properties ---
+  freeTrialData = {
+    email: '',
+    firstName: '',
+    whatsappNumber: null as number | null // Initialize as null, allow number
+  };
+  isSubmittingTrial = false;
+  trialSubmissionStatus: 'success' | 'error' | 'pending' | 'none' = 'none';
+  trialResponseMessage: string = ''; // To hold success/error messages
+  // --- End Free Trial Properties ---
+
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private planService: PlanService,
+    private freeTrialService: FreeTrialService // Inject the service
+  ) {}
 
   goToCheckout(selectedPlan: any) {
     this.planService.setSelectedPlan(selectedPlan);
@@ -127,8 +146,53 @@ export class HeroComponent implements OnInit {
     );
 }
 
+  // --- Free Trial Method ---
+  requestFreeTrial() {
+    // Basic validation (can be enhanced in the template with required attributes)
+    if (!this.freeTrialData.email || !this.freeTrialData.whatsappNumber || !this.freeTrialData.firstName) {
+      console.error('Free trial form is incomplete.');
+      this.trialSubmissionStatus = 'error';
+      this.trialResponseMessage = 'Please fill in all required fields (First Name, Email, WhatsApp Number).';
+      return; // Prevent submission if basic fields are missing
+    }
+
+    this.isSubmittingTrial = true;
+    this.trialSubmissionStatus = 'pending';
+    this.trialResponseMessage = ''; // Clear previous messages
+
+    // Ensure whatsappNumber is a number if provided
+    const payload = {
+        ...this.freeTrialData,
+        whatsappNumber: this.freeTrialData.whatsappNumber ? Number(this.freeTrialData.whatsappNumber) : null
+    };
+
+    this.freeTrialService.requestTrial(payload).subscribe({
+      next: (response: FreeTrialResponse) => {
+        console.log('Free trial request successful', response);
+        this.trialSubmissionStatus = 'success';
+        this.trialResponseMessage = 'Success! Please check your email to verify your free trial.';
+        // Optionally reset form fields
+        // this.freeTrialData = { email: '', firstName: '', whatsappNumber: null };
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Free trial request failed', error);
+        this.trialSubmissionStatus = 'error';
+        // Access specific error message from the backend if available
+        const backendMessage = (error.error instanceof ErrorEvent) ? 
+            error.error.message : // Client-side or network error
+            error.error?.message; // Backend-side error message (adjust based on backend response structure)
+        this.trialResponseMessage = backendMessage || 'An error occurred. Please try again.';
+      },
+      complete: () => {
+        this.isSubmittingTrial = false;
+      }
+    });
+  }
+  // --- End Free Trial Method ---
+
   resetForm() {
     this.form = {
+      firstname:'',
       email: '',
       phone: ''
     };
@@ -158,6 +222,7 @@ export class HeroComponent implements OnInit {
   allPlans: PricingPlan[] = [
     // Individual Plans
     {
+      id:1,
       title: 'BASIC PLAN',
       discountText: '(Regularly €99 – Save 30%)',
       price: '€69',
@@ -179,6 +244,7 @@ export class HeroComponent implements OnInit {
       planType: 'individual'
     },
     {
+      id:2,
       title: 'POPULAR PLAN',
       discountText: '(Regularly €169 – Save 41%)',
       price: '€118',
@@ -202,6 +268,7 @@ export class HeroComponent implements OnInit {
     },
     // Family Plans 
     {
+      id:3,
       title: 'PREMIUM PLAN',
       discountText: 'Save 40%',
       price: '€169',
@@ -217,6 +284,7 @@ export class HeroComponent implements OnInit {
       planType: 'family'
     },
     {
+      id:4,
       title: 'Lifetime Plan',
       discountText: 'Save 40%',
       price: '€349',
@@ -317,9 +385,8 @@ export class HeroComponent implements OnInit {
     const swiperElement = this.swiperEl.nativeElement;
     const params = {
       slidesPerView: 4,
-      speed: 1000,
+      speed: 2000,
       autoplay: {
-        delay: 1000,
         disableOnInteraction: false,
         pauseOnMouseEnter: true
       }

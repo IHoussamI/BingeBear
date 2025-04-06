@@ -1,18 +1,25 @@
 import { Component, OnInit } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { OrderRequest } from '../../Services/OrderRequest';
 import { OrderService } from '../../Services/order.service';
 import { PlanService } from '../../Services/PlanService';
-import { v4 as uuidv4 } from 'uuid'; 
+import { HttpClient } from '@angular/common/http';
 
-interface Plan {
-  id: any;
+interface PricingPlan {
+  id: number;
   title: string;
+  discountText: string;
+  price: string;
+  duration: string;
   description: string;
-  price: any;
+  features: string[];
+  ctaText: string;
+  planType: string;
+  isPopular?: boolean;
 }
+
 
 @Component({
   selector: 'app-checkout',
@@ -22,79 +29,71 @@ interface Plan {
   styleUrl: './checkout.component.css'
 })
 export class CheckoutComponent implements OnInit {
-  selectedPlan: Plan | null = null;
-  checkoutForm: FormGroup;
+  selectedPlan: PricingPlan | null = null;
+  checkoutForm!: FormGroup;
   isSubmitting = false;
-  sessionId: string;
+  submissionStatus: 'success' | 'error' | 'none' = 'none';
 
   constructor(
     private planService: PlanService,
-    private router: Router,
+    private fb: FormBuilder,
     private orderService: OrderService,
-    private fb: FormBuilder
-  ) {
-    this.sessionId = uuidv4(); // Generate unique session ID
-    this.checkoutForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      country: ['Ireland', Validators.required],
-      city: ['', Validators.required],
-      phone: ['', Validators.required],
-      whatsapp: ['']
-    });
-  }
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.selectedPlan = this.planService.getSelectedPlan();
+
     if (!this.selectedPlan) {
-      console.warn('No plan selected - redirecting to home');
-      this.router.navigate(['/']);
+      console.log('No plan selected, redirecting to home.');
+      this.router.navigate(['/home']);
+      return;
     }
+
+    this.checkoutForm = this.fb.group({
+      firstName: [''],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', Validators.required],
+      country: ['Ireland', Validators.required],
+      city: ['']
+    });
   }
 
-  onSubmit(): void {
-    if (this.checkoutForm.invalid || !this.selectedPlan || this.isSubmitting) {
+  onSubmit() {
+    if (this.checkoutForm.invalid || !this.selectedPlan) {
+      this.checkoutForm.markAllAsTouched();
+      console.error('Form is invalid or no plan selected.');
       return;
     }
 
     this.isSubmitting = true;
+    this.submissionStatus = 'none';
 
-    const formValue = this.checkoutForm.value;
+    const orderData: OrderRequest = {
+      ...this.checkoutForm.value,
+      selectedPlanId: this.selectedPlan.id
+    };
 
-    // Create order data matching backend expectations
-    this.orderService.createOrder(
-      this.sessionId,
-      this.selectedPlan.id,
-      formValue.email
-    ).subscribe({
-      next: (response) => {
-        // Create client info
-        const clientData = {
-          firstName: formValue.firstName,
-          lastName: formValue.lastName,
-          email: formValue.email,
-          phone: formValue.phone,
-          country: formValue.country,
-          city: formValue.city
-        };
-
-        // You might want to save client info separately
-        this.planService.clearSelectedPlan();
-        this.router.navigate(['/order-confirmation'], {
-          state: { 
-            order: response,
-            client: clientData 
-          }
-        });
+    this.orderService.placeOrder(orderData).subscribe({
+      next: (response: any) => {
+        console.log('Order submitted successfully', response);
+        this.submissionStatus = 'success';
       },
-      error: (err) => {
-        console.error('Order submission failed:', err);
+      error: (error: any) => {
+        console.error('Error submitting order', error);
+        this.submissionStatus = 'error';
+      },
+      complete: () => {
         this.isSubmitting = false;
       }
     });
   }
 
+  goToHome(): void {
+    this.router.navigate(['/home']);
+  }
 
   features = [
     'Instant Activation',

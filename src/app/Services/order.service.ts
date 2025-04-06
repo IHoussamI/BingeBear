@@ -1,32 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
-interface OrderData {
-  plan: {
-    id: any;
-    name: string;
-    price: any;
-  };
-  client: any;
-  orderDate: string;
-}
-
+import { OrderRequest } from './OrderRequest';
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  private apiUrl = 'http://localhost:8080/api/orders'; // Update with your API endpoint
+  private apiUrl = 'http://localhost:8080/api/orders';
 
   constructor(private http: HttpClient) {}
-  
-  createOrder(sessionId: string, planId: number, clientEmail: string): Observable<any> {
-    return this.http.post(this.apiUrl, null, {
-      params: {
-        sessionId,
-        planId: planId.toString(),
-        clientEmail
-      }
-    });
+
+  placeOrder(order: OrderRequest): Observable<any> {
+    return this.http.post(this.apiUrl, order);
   }
 }

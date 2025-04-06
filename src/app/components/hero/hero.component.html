@@ -60,8 +60,9 @@
         autoplay="true" 
         slides-per-view="auto"
         slides-per-group="5" 
-        speed="1000" 
+        speed="2000" 
         pause-on-mouse-enter="true"
+        autoplay-delay="100"
         breakpoints='{
           "320": {"slidesPerView": 2 },
           "480": {"slidesPerView": 2 },
@@ -140,7 +141,8 @@
           </div>
         </div>
       </figure>
-      <div class="subscription-text">
+      <div class="subscription-text" ><meta name="viewport" content="width=device-width, initial-scale=1">
+
         <figure class="scrolling-text-container">
           <div class="highlight-zone"></div>
           <div class="scrolling-text">
@@ -257,7 +259,7 @@
 
     <!-- DEVICE SECTION -->
   <section class="device-section">
-    <section class="device-type">
+    <div class="device-type">
       <div class="button-toggle" role="tablist">
         <button [class.active]="selectedDevice === 'apple'" 
                 (click)="selectDevice('apple')"
@@ -326,76 +328,69 @@
   <img src="/other-devices-photo.png" loading="lazy" alt="Android and Firestick Setup">
 </figure>
 </article>
-</section>
+</div>
 </section>
 
   
    <!-- PRICING SECTION -->
-   <section class="pricing-container" id="section1" itemscope itemtype="https://schema.org/Product">
-    <div class="pricing-title">
-      <h1 itemprop="name">Manage<br><span>Subscription</span></h1>
-      <p itemprop="description">Pick the plan that fits your streaming needs.</p>
-    </div>
+<section class="pricing-container" id="section1" itemscope itemtype="https://schema.org/Product">
+  <div class="pricing-title">
+    <h1 itemprop="name">Manage<br><span>Subscription</span></h1>
+    <p itemprop="description">Pick the plan that fits your streaming needs.</p>
+  </div>
 
-    <div class="button-toggle" role="tablist">
-      <button [class.active]="selectedPlanType === 'individual'" 
-              (click)="selectPlanType('individual')"
-              role="tab"
-              aria-selected="true"
-              aria-controls="individual-plans">
-        Individual
-      </button>
-      <button [class.active]="selectedPlanType === 'family'" 
-              (click)="selectPlanType('family')"
-              role="tab"
-              aria-selected="false"
-              aria-controls="family-plans">
-        Family - Save 40%
-      </button>
-    </div>
+  <div class="button-toggle" role="tablist">
+    <button [class.active]="selectedPlanType === 'individual'" (click)="selectPlanType('individual')" role="tab"
+      aria-selected="true" aria-controls="individual-plans">
+      Individual
+    </button>
+    <button [class.active]="selectedPlanType === 'family'" (click)="selectPlanType('family')" role="tab"
+      aria-selected="false" aria-controls="family-plans">
+      Family - Save 40%
+    </button>
+  </div>
 
-    <div class="plans-container">
-      <article *ngFor="let plan of plans" 
-      class="plan-card" 
-      [class.popular]="plan.isPopular"
-      itemprop="offers" 
-      itemscope 
+  <div class="plans-container">
+    <article *ngFor="let plan of plans" class="plan-card" [class.popular]="plan.isPopular" itemprop="offers" itemscope
       itemtype="https://schema.org/Offer">
-        <div class="discount">{{ plan.discountText }}</div>
-        <div class="plan-header">
-          <h3>{{ plan.title }}</h3>
-          <div class="price-section">
-            <div class="current-price">
-              <span class="amount">{{ plan.price }}</span>
-              <span class="duration">{{ plan.duration }}</span>
-            </div>
-            <div class="description">{{ plan.description }}</div>
+      <div class="discount">{{ plan.discountText }}</div>
+      <div class="plan-header">
+        <h3>{{ plan.title }}</h3>
+        <div class="price-section">
+          <div class="current-price">
+            <span class="amount">{{ plan.price }}</span>
+            <span class="duration">{{ plan.duration }}</span>
           </div>
+          <div class="description">{{ plan.description }}</div>
         </div>
+      </div>
 
-        <div class="plan-features">
-          <ul>
-            <li *ngFor="let feature of plan.features">{{ feature }}</li>
-          </ul>
-        </div>
-        <div class="full-width-divider"></div>
+      <div class="plan-features">
+        <ul>
+          <li *ngFor="let feature of plan.features">{{ feature }}</li>
+        </ul>
+      </div>
+      <div class="full-width-divider"></div>
 
-        <button class="cta-button">
-          <span class="cta-text" [routerLink]="['/checkout']">{{ plan.ctaText }}</span>
-        </button>
-      </article>
-    </div>
+      <button class="cta-button" (click)="goToCheckout(plan)">
+        <span class="cta-text">{{ plan.ctaText }}</span>
+      </button>
+    </article>
+  </div>
 
-    <div class="pricing-footer">
-      <p><img src="information-button.png" loading="lazy" alt="info icon">No hidden fees. Cancel anytime.</p>
-      <figure class="payment-photos">
-        <img src="/Revolut.png" loading="lazy" alt="Revolut">
-        <img src="paypal.png" loading="lazy" alt="Paypal">
-        <img src="/USDT.png" loading="lazy" alt="USDT Transfert">
-        <img src="/western.png" loading="lazy" alt="WesternUnion">
-      </figure>
-    </div>
-  </section>
+  <div class="pricing-footer">
+    <p><img src="information-button.png" loading="lazy" alt="info icon">No hidden fees. Cancel anytime.</p>
+    <figure class="payment-photos">
+      <img src="/Revolut.png" loading="lazy" alt="Revolut">
+      <img src="paypal.png" loading="lazy" alt="Paypal">
+      <img src="/USDT.png" loading="lazy" alt="USDT Transfert">
+      <img src="/western.png" loading="lazy" alt="WesternUnion">
+    </figure>
+  </div>
+</section>
+
+
+<!-- ACCESS CONTACT  -->
 
   <section class="Access-contact" id="section2" itemscope itemtype="https://schema.org/ContactPage">
     <div class="custom-device-content">
@@ -414,23 +409,45 @@
         </div>  
       </div>
       <div class="custom-filling-contact" itemprop="potentialAction" itemscope itemtype="https://schema.org/SubscribeAction">
-        <form class="custom-form" (ngSubmit)="submitForm()" itemprop="target" itemscope itemtype="https://schema.org/EntryPoint">
-          <meta itemprop="url" content="https://yourdomain.com/subscribe">
+        <form class="custom-form" #freeTrialForm="ngForm" (ngSubmit)="freeTrialForm.valid && requestFreeTrial()" itemprop="target" itemscope itemtype="https://schema.org/EntryPoint">
+          <meta itemprop="url" content="https://yourdomain.com/free-trial">
           <div class="custom-form-wrapper">
             <div class="custom-input-container">
               <div class="custom-input-block">
-                <label for="email">Email Address</label>
-                <input class="custom-input" id="email" [(ngModel)]="form.email" name="email"
-                  placeholder="Your Email Address" required itemprop="email">
+                <label for="trialFirstName">First Name</label>
+                <input class="custom-input" id="trialFirstName" [(ngModel)]="freeTrialData.firstName" name="trialFirstName"
+                  placeholder="Your First Name " required #firstNameInput="ngModel" itemprop="givenName">
+                <div *ngIf="firstNameInput.invalid && (firstNameInput.dirty || firstNameInput.touched)" class="validation-error">
+                  First Name is required.
+                </div>
               </div>
               <div class="custom-input-block">
-                <label for="phone">WhatsApp Number</label>
-                <input class="custom-input" id="phone" [(ngModel)]="form.phone" name="phone"
-                  placeholder="Enter Whatsapp Number (+353)" required itemprop="telephone">
+                <label for="trialEmail">Email Address</label>
+                <input class="custom-input" id="trialEmail" [(ngModel)]="freeTrialData.email" name="trialEmail"
+                  type="email" placeholder="Your Email Address" required email #emailInput="ngModel" itemprop="email">
+                 <!-- Simplified validation message -->
+                 <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" class="validation-error">
+                   Please enter a valid email address.
+                 </div>
+              </div>
+              <div class="custom-input-block">
+                <label for="trialPhone">WhatsApp Number</label>
+                <input class="custom-input" id="trialPhone" [(ngModel)]="freeTrialData.whatsappNumber" name="trialPhone"
+                  type="tel" placeholder="Enter Whatsapp Number (+353)" required #phoneInput="ngModel" itemprop="telephone">
+                <div *ngIf="phoneInput.invalid && (phoneInput.dirty || phoneInput.touched)" class="validation-error">
+                   WhatsApp number is required.
+                </div>
               </div>
             </div>
             <div class="custom-submit-block">
-              <button class="custom-submit" type="submit" itemprop="name">UNLOCK FREE 24H TRIAL</button>
+              <button class="custom-submit" type="submit" [disabled]="isSubmittingTrial || freeTrialForm.invalid" itemprop="name">
+                <span *ngIf="!isSubmittingTrial">UNLOCK FREE 24H TRIAL</span>
+                <span *ngIf="isSubmittingTrial">REQUESTING...</span>
+              </button>
+            </div>
+            <div *ngIf="trialSubmissionStatus !== 'none' && trialSubmissionStatus !== 'pending'" class="submission-message"
+                 [ngClass]="{'success': trialSubmissionStatus === 'success', 'error': trialSubmissionStatus === 'error'}">
+              {{ trialResponseMessage }}
             </div>
           </div>
         </form>
@@ -446,6 +463,7 @@
           <img src="/Untitled design (50).png" loading="lazy" alt="Subscription Icon">
         </figure>
         <h1 itemprop="name">Pay Safely🤑</h1>
+        
         <p itemprop="description">No hidden fees, no hassle—just quick, secure transfers.<br> It's the easiest way to pay for your subscription.</p>
         <div class="revolut-subscription-button-container">
           <button class="revolut-subscription-button" (click)="scrollToSection('section1')" aria-label="Manage Payment Subscription">
@@ -1101,7 +1119,7 @@
   <footer class="footer" itemscope itemtype="https://schema.org/Organization">
     <h2 itemprop="name">Working With the Best in IPTV</h2>
     <figure class="container">
-      <swiper-container loop="true" space-between="30" slides-per-view="5" autoplay="true">
+      <swiper-container loop="true" space-between="30" slides-per-view="5" autoplay="true" autoplay-delay="1500">
         <swiper-slide><img src="1.png" loading="lazy" alt="IPTV Partner Logo"></swiper-slide>
         <swiper-slide><img src="2.png" loading="lazy" alt="IPTV Partner Logo"></swiper-slide>
         <swiper-slide><img src="3.png" loading="lazy" alt="IPTV Partner Logo"></swiper-slide>
