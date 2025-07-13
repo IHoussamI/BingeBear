@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
-import { OrderRequest } from '../../Services/OrderRequest';
 import { OrderService } from '../../Services/order.service';
 import { PlanService } from '../../Services/PlanService';
 import { HttpClient } from '@angular/common/http';
+import { OrderRequest } from '../../Models/OrderRequest.model';
 
 interface PricingPlan {
   id: number;

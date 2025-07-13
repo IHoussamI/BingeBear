@@ -35,14 +35,20 @@ export class FreeTrialService {
 
   requestTrial(data: FreeTrialRequestDTO): Observable<FreeTrialResponse> {
     return this.http.post<FreeTrialResponse>(`${this.apiUrl}/request`, data).pipe(
-      catchError(this.handleError) // Add basic error handling
+      catchError((error: HttpErrorResponse) => {
+        console.log('An error occurred:');
+        console.log(error.error); // Log the raw error object
+        
+        // Don't transform the error - pass it through as is
+        return throwError(() => error);
+      })
     );
   }
 
-  // Basic error handler (can be expanded)
-  private handleError(error: HttpErrorResponse) {
-    console.error('An error occurred:', error.error);
-    // Return an observable with a user-facing error message
-    return throwError(() => new Error(error.error?.message || 'Something bad happened; please try again later.'));
-  }
+  // // Basic error handler (can be expanded)
+  // private handleError(error: HttpErrorResponse) {
+  //   console.error('An error occurred:', error.error);
+  //   // Return an observable with a user-facing error message
+  //   return throwError(() => new Error(error.error?.message || 'Something bad happened; please try again later.'));
+  // }
 } 

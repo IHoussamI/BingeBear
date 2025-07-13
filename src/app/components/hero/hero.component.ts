@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, HostListener, CUSTOM_ELEMENTS_SCHEMA, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, RouterModule } from '@angular/router';
 import { register } from 'swiper/element/bundle';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { PlanService } from '../../Services/PlanService';
@@ -24,12 +24,13 @@ interface PricingPlan {
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [RouterLink,CommonModule,FormsModule],
+  imports: [RouterLink,CommonModule,FormsModule,RouterModule],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HeroComponent implements OnInit {
+  showMenu = false;
 
   @ViewChild('swiper') swiperEl!: ElementRef;
 
@@ -52,7 +53,17 @@ export class HeroComponent implements OnInit {
     this.animatedElements = Array.from(document.querySelectorAll('.animated-text'));
     this.checkScroll();
 
+    setTimeout(() => {
+      this.showMenu = true;
+    }, 5000); // Show after 5 seconds
 
+    // Show WhatsApp button after 5 seconds
+    setTimeout(() => {
+      const whatsappButton = document.getElementById('whatsappButton');
+      if (whatsappButton) {
+        whatsappButton.classList.add('visible');
+      }
+    }, 5000);
   }
   imageList: string[] = Array.from({ length: 50 }, (_, i) => `/swiper-movies/movie${i + 1}.jpg`);
 
@@ -126,77 +137,81 @@ export class HeroComponent implements OnInit {
 
   goToCheckout(selectedPlan: any) {
     this.planService.setSelectedPlan(selectedPlan);
-    this.router.navigate(['/checkout']);
-  }
-
-
-  submitForm() {
-    this.http.post('http://localhost:8080/api/contact', this.form).subscribe(
-        (response: any) => { 
-            if (response.message) {
-                this.submissionStatus = 'success';
-                this.resetForm();
-            } else {
-                this.submissionStatus = 'error';
-            }
-        },
-        error => {
-            this.submissionStatus = 'error';
-        }
-    );
-}
-
-  // --- Free Trial Method ---
-  requestFreeTrial() {
-    // Basic validation (can be enhanced in the template with required attributes)
-    if (!this.freeTrialData.email || !this.freeTrialData.whatsappNumber || !this.freeTrialData.firstName) {
-      console.error('Free trial form is incomplete.');
-      this.trialSubmissionStatus = 'error';
-      this.trialResponseMessage = 'Please fill in all required fields (First Name, Email, WhatsApp Number).';
-      return; // Prevent submission if basic fields are missing
-    }
-
-    this.isSubmittingTrial = true;
-    this.trialSubmissionStatus = 'pending';
-    this.trialResponseMessage = ''; // Clear previous messages
-
-    // Ensure whatsappNumber is a number if provided
-    const payload = {
-        ...this.freeTrialData,
-        whatsappNumber: this.freeTrialData.whatsappNumber ? Number(this.freeTrialData.whatsappNumber) : null
-    };
-
-    this.freeTrialService.requestTrial(payload).subscribe({
-      next: (response: FreeTrialResponse) => {
-        console.log('Free trial request successful', response);
-        this.trialSubmissionStatus = 'success';
-        this.trialResponseMessage = 'Success! Please check your email to verify your free trial.';
-        // Optionally reset form fields
-        // this.freeTrialData = { email: '', firstName: '', whatsappNumber: null };
-      },
-      error: (error: HttpErrorResponse) => {
-        console.error('Free trial request failed', error);
-        this.trialSubmissionStatus = 'error';
-        // Access specific error message from the backend if available
-        const backendMessage = (error.error instanceof ErrorEvent) ? 
-            error.error.message : // Client-side or network error
-            error.error?.message; // Backend-side error message (adjust based on backend response structure)
-        this.trialResponseMessage = backendMessage || 'An error occurred. Please try again.';
-      },
-      complete: () => {
-        this.isSubmittingTrial = false;
-      }
+    this.router.navigate(['/checkout']).then(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' }); // Smooth scroll to top
     });
   }
-  // --- End Free Trial Method ---
 
-  resetForm() {
-    this.form = {
-      firstname:'',
-      email: '',
-      phone: ''
-    };
-  }
+
+ // --- Free Trial Method ---
+ requestFreeTrial() {
+  // Form validation is already handled by template, so we can proceed directly
+  this.isSubmittingTrial = true;
+  this.trialSubmissionStatus = 'pending';
+  this.trialResponseMessage = '';
+
+  const payload = {
+    firstName: this.freeTrialData.firstName,
+    email: this.freeTrialData.email,
+    whatsappNumber: this.freeTrialData.whatsappNumber ? 
+                   Number(this.freeTrialData.whatsappNumber) : null
+  };
+
+  this.freeTrialService.requestTrial(payload).subscribe({
+    next: (response: FreeTrialResponse) => {
+      this.trialSubmissionStatus = 'success';
+      this.trialResponseMessage = 'Success! Please check your email to verify your free trial.';
+      // Reset form after success
+      this.freeTrialData = { email: '', firstName: '', whatsappNumber: null };
+      this.isSubmittingTrial = false;
+    },
+    error: (error: HttpErrorResponse) => {
+      console.error('Registration error:', error);
+      this.trialSubmissionStatus = 'error';
+      this.isSubmittingTrial = false;
+    
+      // Check the actual error response body
+      const errorBody = error.error;
+      console.log('Error body:', errorBody);
+    
+      // Process the error message
+      if (errorBody && errorBody.code) {
+        switch (errorBody.code) {
+          case 'EMAIL_EXISTS':
+            this.trialResponseMessage = 'This email is already registered. Please use a different email.';
+            break;
+          case 'PHONE_EXISTS':
+            this.trialResponseMessage = 'This WhatsApp number is already registered. Please use a different number.';
+            break;
+          default:
+            this.trialResponseMessage = errorBody.message || 'Registration failed. Please try again.';
+        }
+      } else if (errorBody && errorBody.message) {
+        // If there's a message but no code
+        const errorMsg = errorBody.message.toLowerCase();
+        if (errorMsg.includes('email')) {
+          this.trialResponseMessage = 'This email is already registered. Please use a different email.';
+        } else if (errorMsg.includes('whatsapp') || errorMsg.includes('number')) {
+          this.trialResponseMessage = 'This WhatsApp number is already registered. Please use a different number.';
+        } else {
+          this.trialResponseMessage = errorBody.message;
+        }
+      } else {
+        // Fallback error message
+        this.trialResponseMessage = 'Registration failed. Please try again.';
+      }
+    }
+  });
+}
+
+resetForm() {
+  this.form = {
+    firstname:'',
+    email: '',
+    phone: ''
+  };
+}
+
   isOpen1 = false;
   isOpen2 = false; 
   isOpen3 = false; 
@@ -213,8 +228,10 @@ export class HeroComponent implements OnInit {
   isOpen14 = false; 
   isOpen15 = false; 
   isOpen16 = false; 
-  selectedPlanType: 'individual' | 'family' = 'individual';
 
+
+
+  selectedPlanType: 'individual' | 'family' = 'individual';
   selectPlanType(type: 'individual' | 'family') {
     this.selectedPlanType = type;
   }
@@ -312,7 +329,9 @@ export class HeroComponent implements OnInit {
     this.setupHighlightEffect();
     this.setupImageHoverEffect();
     this.initializeSwiper();
-
+    
+    // Ensure WhatsApp button is properly initialized
+    this.initializeWhatsAppButton();
   }
 
   private setupHighlightEffect() {
@@ -397,4 +416,22 @@ export class HeroComponent implements OnInit {
     }
   
     movieImages: string[] = [];
+
+  private initializeWhatsAppButton() {
+    // First attempt to show the button
+    setTimeout(() => {
+      const whatsappButton = document.getElementById('whatsappButton');
+      if (whatsappButton) {
+        whatsappButton.classList.add('visible');
+      }
+    }, 5000);
+    
+    // Backup attempt in case the first one fails
+    setTimeout(() => {
+      const whatsappButton = document.getElementById('whatsappButton');
+      if (whatsappButton && !whatsappButton.classList.contains('visible')) {
+        whatsappButton.classList.add('visible');
+      }
+    }, 6000);
   }
+}
