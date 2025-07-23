@@ -20,12 +20,11 @@ git clone https://github.com/IHoussamI/BingeBear.git
 cd BingeBear
 npm install
 ng serve
-📌 Démo en ligne
-[Ajoutez ici l’URL de la démo]
+
 
 📫 Contact
 Email : Mesk.hsm@gmail.com
-LinkedIn : [Votre profil LinkedIn]
+LinkedIn : [[Votre profil LinkedIn]](https://www.linkedin.com/in/mesk-houssam/)
 
 🤝 Contributions
 Les contributions sont les bienvenues ! Merci d’ouvrir un ticket avant de proposer des modifications.
