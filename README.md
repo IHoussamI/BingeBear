@@ -24,7 +24,7 @@ ng serve
 
 📫 Contact
 Email : Mesk.hsm@gmail.com
-LinkedIn : [[Votre profil LinkedIn]](https://www.linkedin.com/in/mesk-houssam/)
+LinkedIn : https://www.linkedin.com/in/mesk-houssam/
 
 🤝 Contributions
 Les contributions sont les bienvenues ! Merci d’ouvrir un ticket avant de proposer des modifications.
