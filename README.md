@@ -1,33 +1,31 @@
-README for Linesat (English)
-markdown
-Copy
-Edit
-# Linesat — Membership Sales Platform (Ireland)
+# BingeBear — Plateforme de gestion d’abonnements (Europe)
 
-Linesat is a sleek and modern web application designed to sell memberships in Ireland. Built with a beautiful and intuitive interface, it provides admins exclusive access to a secure dashboard.
+BingeBear est une application web moderne destinée aux clients européens, offrant une gestion complète des abonnements. Cette plateforme sécurisée permet aux administrateurs d’accéder à un tableau de bord intuitif pour suivre les commandes, les essais gratuits et les informations détaillées des utilisateurs.
 
-## 🛠 Key Features
-- 🔐 Admin authentication with JWT security  
-- 📊 Dashboard displaying orders, free trials, and detailed user information  
-- 🖥️ Clean and responsive UI for smooth management  
-- 🇬🇧 Fully in English for an Irish audience  
+## 🛠 Fonctionnalités principales
+- 🔐 Authentification sécurisée des administrateurs via JWT  
+- 📊 Tableau de bord complet avec gestion des commandes, essais gratuits et données utilisateurs  
+- 🖥️ Interface responsive et élégante adaptée à tous types d’écrans  
+- 🇫🇷 Interface en français, pensée pour le marché européen  
 
-## 🚀 Technology Stack
-- Frontend: Angular 18+  
-- Backend: Spring Boot 3+ with Java 17  
-- Authentication: JWT (JSON Web Tokens)  
-- Database: MySQL  
+## 🚀 Technologies utilisées
+- Frontend : Angular 18+  
+- Backend : Spring Boot 3+ avec Java 17  
+- Authentification : JWT (JSON Web Tokens)  
+- Base de données : MySQL  
 
-## ⚡ Quick Start
+## ⚡ Démarrage rapide
 ```bash
-git clone https://github.com/IHoussamI/Linesat.git
-cd Linesat
+git clone https://github.com/IHoussamI/BingeBear.git
+cd BingeBear
 npm install
 ng serve
+📌 Démo en ligne
+[Ajoutez ici l’URL de la démo]
 
 📫 Contact
-Email: Mesk.hsm@gmail.com
-LinkedIn: [Your LinkedIn URL]
+Email : Mesk.hsm@gmail.com
+LinkedIn : [Votre profil LinkedIn]
 
 🤝 Contributions
-Pull requests are welcome! Please open an issue first to discuss proposed changes.
+Les contributions sont les bienvenues ! Merci d’ouvrir un ticket avant de proposer des modifications.
